@@ -72,4 +72,52 @@ const talents = [
   },
 ]
 
-export { searchFields, talents }
+const profile = {
+  name: "Sophia Patel",
+  role: "Software Engineer",
+  company: "Google",
+  location: "New York, United States",
+  avatar: "src/assets/avatar.png",
+  about: "As a Software Engineer at Google, I specialize in building scalable and high-performance applications. My expertise lies in integrating front-end and back-end technologies to deliver seamless user experiences. With a strong foundation in React and Spring Boot, and a focus on MongoDB for database solutions, I am passionate about leveraging the latest technologies to solve complex problems and drive innovation. My goal is to create impactful software that enhances productivity and meets user needs effectively.",
+  skills: ["React", "SpringBoot", "MongoDB", "Python", "Machine Learning", "TensorFlow"],
+  experience: [
+    {
+      title: "Software Engineer",
+      company: "Google",
+      location: "New York, United States",
+      startDate: "Feb 2022",
+      endDate: "Present",
+      description: "As a Software Engineer at Google, I specialize in building scalable and high-performance applications. My expertise lies in integrating front-end and back-end technologies to deliver seamless user experiences. With a strong foundation in React and Spring Boot, and a focus on MongoDB for database solutions, I am passionate about leveraging the latest technologies to solve complex problems and drive innovation. My goal is to create impactful software that enhances productivity and meets user needs effectively."
+    },
+    {
+      title: "Product Manager",
+      company: "Amazon",
+      location: "Seattle, United States",
+      startDate: "Oct 2021",
+      endDate: "Feb 2022",
+      description: "An experienced Product Manager at Amazon, driving product innovation and strategy. I work closely with cross-functional teams to develop user-centric solutions and improve product experiences. Passionate about Agile methodologies and leveraging user research to make data-driven decisions."
+    }
+  ],
+  certifications: [
+    {
+      name: "Google Cloud Certified Professional",
+      issuer: "Google",
+      issueDate: "May 2024",
+      certificationId: "CB7365DK7S"
+    },
+    {
+      name: "AWS Certified Solutions Architect – Associate",
+      issuer: "Amazon",
+      issueDate: "July 2023",
+      certificationId: "AWS123456789"
+    },
+    {
+      name: "Microsoft Certified: Azure Fundamentals",
+      issuer: "Microsoft",
+      issueDate: "March 2022",
+      certificationId: "AZ900-98765"
+    },
+  ]
+}
+
+export { searchFields, talents, profile }

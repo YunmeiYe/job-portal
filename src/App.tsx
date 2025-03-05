@@ -8,6 +8,7 @@ import FindJobsPage from './ Pages/FindJobsPage';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import FindTalentsPage from './ Pages/FindTalentsPage';
+import TalentProfilePage from './ Pages/TalentProfilePage';
 
 function App() {
   const theme = createTheme({
@@ -26,6 +27,7 @@ function App() {
         <Routes>
           <Route path='/find-jobs' element={<FindJobsPage />} />
           <Route path='/find-talents' element={<FindTalentsPage />} />
+          <Route path='/talent-profile' element={<TalentProfilePage />} />
           <Route path='*' element={<HomePage />} />
         </Routes>
         <Footer/>
