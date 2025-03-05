@@ -1,0 +1,101 @@
+import { IconBriefcase, IconMapPin, IconRecharging, IconSearch } from "@tabler/icons-react";
+
+const dropdownData = [
+  { title: "Job Title", icon: IconSearch, options: ["Designer", "Developer", "Product Manager", "Marketing Specialist", "Data Analyst", "Sales Executive", "Content Writer", "Customer Support"] },
+  { title: "Location", icon: IconMapPin, options: ["New York", "San Francisco", "London", "Berlin", "Tokyo", "Sydney", "Toroto", "Delhi"] },
+  { title: "Experience", icon: IconBriefcase, options: ["Entry Level", "Intermediate", "Expert"] },
+  {title: "Job Type", icon: IconRecharging, options: ["Full Time", "Part Time", "Contract", "Freelance", "Internship"]}
+];
+
+const jobList = [
+  {
+    jobTitle: "Sr. Software Engineer",
+    company: "Google",
+    applicants: 30,
+    experience: "Expert",
+    jobType: "Full-Time",
+    location: "New York",
+    package: "$100k - $150k",
+    postedDaysAgo: 7,
+    description: "Google is looking for a senior software engineer to join our team. We are looking for an experienced developer with strong problem-solving and communication skills. You will be responsible for developing new features, improving existing systems, and ensuring the quality and reliability of our software.",
+  },
+  {
+    jobTitle: "Frontend Developer",
+    company: "Apple",
+    applicants: 25,
+    experience: "Expert",
+    jobType: "Full-Time",
+    location: "San Francisco",
+    package: "$70k - $90k",
+    postedDaysAgo: 10,
+    description: "Apple is looking for a frontend developer to join our team. We are looking for an experienced developer with strong HTML, CSS, and JavaScript skills. You will be responsible for developing new features, improving existing systems, and ensuring the quality and reliability of our software.",
+  },
+  {
+    jobTitle: "Backend Engineer",
+    company: "Amazon",
+    applicants: 25,
+    experience: "Intermediate",
+    jobType: "Contract",
+    location: "Seattle",
+    package: "$110k - $160k",
+    postedDaysAgo: 5,
+    description: "Amazon is looking for an experienced backend engineer to design and develop scalable web services. Strong knowledge of AWS and microservices architecture is required.",
+  },
+  {
+    jobTitle: "Data Scientist",
+    company: "Netflix",
+    applicants: 20,
+    experience: "Expert",
+    jobType: "Part-Time",
+    location: "Los Gatos",
+    package: "$120k - $180k",
+    postedDaysAgo: 10,
+    description: "Netflix is seeking a data scientist with experience in predictive modeling and machine learning. You will analyze user data to enhance content recommendations.",
+  },
+  {
+    jobTitle: "DevOps Engineer",
+    company: "Microsoft",
+    applicants: 35,
+    experience: "Entry Level",
+    jobType: "Internship",
+    location: "Redmond",
+    package: "$95k - $140k",
+    postedDaysAgo: 2,
+    description: "Microsoft is looking for a DevOps engineer to maintain and optimize cloud infrastructure. Proficiency in CI/CD pipelines and Kubernetes is preferred.",
+  },
+  {
+    jobTitle: "Full-Stack Developer",
+    company: "Meta",
+    applicants: 40,
+    experience: "Intermediate",
+    jobType: "Full-Time",
+    location: "Palo Alto",
+    package: "$100k - $150k",
+    postedDaysAgo: 8,
+    description: "Meta is hiring a full-stack developer to build and enhance web applications. Experience with JavaScript (React/Node.js) is required.",
+  },
+  {
+    jobTitle: "Product Designer",
+    company: "Adobe",
+    location: "New York",
+    experience: "Expert",
+    jobType: "Full Time",
+    package: "$60k - $90k",
+    applicants: 25,
+    postedDaysAgo: 5,
+    description: "Adobe is looking for a creative designer to join our design team. The ideal candidate has experience in UI/UX and graphic design.",
+  },
+  {
+    jobTitle: "Software Engineer",
+    company: "Spotify",
+    location: "Stockholm",
+    experience: "Expert",
+    jobType: "Full Time",
+    package: "$90k - $140k",
+    applicants: 27,
+    postedDaysAgo: 2,
+    description: "Spotify is hiring a Software Engineer to develop high-performance applications, improve streaming services, and enhance user experiences across platforms.",
+  }
+];
+
+export { jobList, dropdownData }

@@ -4,6 +4,9 @@ import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 import HomePage from './ Pages/HomePage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import FindJobs from './ Pages/FindJobs';
+import Header from './Header/Header';
+import Footer from './Footer/Footer';
 
 function App() {
   const theme = createTheme({
@@ -12,14 +15,18 @@ function App() {
       ],
       brightSun: ["#fffbeb", "#fff3c6", "#ffe588", "#ffd149", "#ffbd20", "#f99b07", "#dd7302", "#b75006", "#943c0c", "#7a330d", "#461902"
       ]
-    }
+    },
+    fontFamily: "poppins, sans-serif"
   })
   return (
-    <MantineProvider theme={theme}>
+    <MantineProvider defaultColorScheme='dark' theme={theme}>
       <BrowserRouter>
+      <Header />
         <Routes>
+          <Route path='/find-jobs' element={<FindJobs />} />
           <Route path='*' element={<HomePage />} />
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </MantineProvider>
   )
