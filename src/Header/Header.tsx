@@ -1,6 +1,7 @@
 import { Avatar, Indicator } from '@mantine/core';
 import { IconBell, IconBowFilled, IconSettings } from '@tabler/icons-react';
 import NavLinks from './NavLinks';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -8,7 +9,7 @@ const Header = () => {
       <div className='flex gap-1 items-center text-bright-sun-400'>
         <IconBowFilled stroke={1.25} className='w-8 h-8' />
         <div className='text-2xl font-semibold'>
-          JobHook
+        <Link to={"/"}>JobHook</Link>
         </div>
       </div>
       <NavLinks />
