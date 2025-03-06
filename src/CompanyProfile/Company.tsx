@@ -26,7 +26,7 @@ const Company = () => {
         </div>
       </div>
       <Divider mx="xs" my="xl" />
-      <div>
+      <div className="px-3">
         <Tabs variant="outline" radius="lg" defaultValue="about">
           <Tabs.List className="[&_button]:!text-lg font-semibold mb-5 [&_button[data-active='true']]:text-bright-sun-400">
             <Tabs.Tab value="about">About</Tabs.Tab>

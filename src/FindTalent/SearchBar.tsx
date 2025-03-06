@@ -30,14 +30,14 @@ const SearchBar = () => {
           color="brightSun.4"
           size={"xs"}
           value={value}
-          min={50} 
+          min={50}
           max={200}
           onChange={setValue}
           labelTransitionProps={{
-          transition: 'skew-down',
-          duration: 150,
-          timingFunction: 'linear',
-        }} />
+            transition: 'skew-down',
+            duration: 150,
+            timingFunction: 'linear',
+          }} />
       </div>
     </div>
   )

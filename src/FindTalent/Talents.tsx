@@ -12,7 +12,7 @@ const Talents = () => {
         </div>
       </div>
       <div className="mt-10 flex flex-wrap gap-5 justify-between">
-      {talents.map((talent, index) => 
+        {talents.map((talent, index) =>
           <TalentCard key={index} {...talent} />
         )}
       </div>

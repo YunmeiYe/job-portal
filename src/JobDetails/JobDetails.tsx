@@ -4,8 +4,8 @@ import { Link } from "react-router-dom"
 import { card, desc, skills } from "../Data/JobDescData"
 import DOMPurify from "dompurify"
 
-const JobDesc = () => {
-  const data = DOMPurify.sanitize(desc);
+const JobDetails = (props: any) => {
+  const cleanHTML = DOMPurify.sanitize(desc);
 
   return (
     <div className="w-2/3">
@@ -21,9 +21,11 @@ const JobDesc = () => {
         </div>
         <div className="flex flex-col gap-2 items-center">
           <Link to={"/apply-job"}>
-            <Button color="brightSun.4" size="sm" variant="light">Apply</Button>
+            <Button color="brightSun.4" size="sm" variant="light">{props.edit ? "Edit" : "Apply"}</Button>
           </Link>
-          <IconBookmark className="text-bright-sun-400 cursor-pointer" />
+          {props.edit
+            ? <Button color="red.4" size="sm" variant="outline">Delete</Button>
+            : <IconBookmark className="text-bright-sun-400 cursor-pointer" stroke={1.5}/>}
         </div>
       </div>
       <Divider my="xl" />
@@ -50,7 +52,7 @@ const JobDesc = () => {
         </div>
       </div>
       <Divider my="xl" />
-      <div className="[&_*]:text-mine-shaft-300 [&_li]:marker:text-bright-sun-400 [&_li]:mb-1 [&_h4]:text-xl [&_h4]:my-5 [&_h4]:font-semibold [&_h4]:text-mine-shaft-200 [&_p]:text-justify" dangerouslySetInnerHTML={{ __html: data }}>
+      <div className="[&_*]:text-mine-shaft-300 [&_li]:marker:text-bright-sun-400 [&_li]:mb-1 [&_h4]:text-xl [&_h4]:my-5 [&_h4]:font-semibold [&_h4]:text-mine-shaft-200 [&_p]:text-justify" dangerouslySetInnerHTML={{ __html: cleanHTML }}>
       </div>
       <Divider my="xl" />
       <div>
@@ -65,16 +67,16 @@ const JobDesc = () => {
               <div className="text-mine-shaft-300">10K+ Employees</div>
             </div>
           </div>
-            <Link to={"/company"}>
-              <Button color="brightSun.4" variant="light">Company Page</Button>
-            </Link>
+          <Link to={"/company"}>
+            <Button color="brightSun.4" variant="light">Company Page</Button>
+          </Link>
         </div>
         <div className="text-mine-shaft-300 text-justify">
-        Here at UIHUT, we are a passionate, fun-loving, growing team. We are looking for talented programmers who enjoy solving technical challenges and are eager to learn and incorporate new technologies into their skillset. This role offers an exciting opportunity to work on innovative projects that impact millions of users worldwide.
+          Here at UIHUT, we are a passionate, fun-loving, growing team. We are looking for talented programmers who enjoy solving technical challenges and are eager to learn and incorporate new technologies into their skillset. This role offers an exciting opportunity to work on innovative projects that impact millions of users worldwide.
         </div>
       </div>
     </div>
   )
 }
 
-export default JobDesc
+export default JobDetails
