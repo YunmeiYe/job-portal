@@ -3,7 +3,7 @@ import { IconBriefcase, IconMapPin } from "@tabler/icons-react"
 import ExpCard from "./ExpCard"
 import CertCard from "./CertCard"
 
-const Profile = (props: any) => {
+const TalentProfile = (props: any) => {
   return (
     <div className="w-2/3">
       <div className="relative">
@@ -68,4 +68,4 @@ const Profile = (props: any) => {
   )
 }
 
-export default Profile
+export default TalentProfile

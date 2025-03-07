@@ -1,7 +1,7 @@
 import { Button } from "@mantine/core"
 import { IconArrowLeft } from "@tabler/icons-react"
 import { Link } from "react-router-dom"
-import Profile from "../TalentProfile/Profile"
+import TalentProfile from "../TalentProfile/TalentProfile"
 import { profile } from "../Data/TalentData"
 import RecommendTalent from "../TalentProfile/RecommendedTalent"
 
@@ -12,7 +12,7 @@ const TalentProfilePage = () => {
         <Button leftSection={<IconArrowLeft size={20} />} color="brightSun.4" variant="light">Back</Button>
       </Link>
       <div className="flex gap-5">
-        <Profile {...profile} />
+        <TalentProfile {...profile} />
         <RecommendTalent />
       </div>
     </div>
