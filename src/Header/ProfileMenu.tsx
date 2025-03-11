@@ -10,17 +10,23 @@ import {
 } from '@tabler/icons-react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { removeUser } from '../Slices/UserSlice';
+import { successNotification } from '../Services/Notification';
 
 const ProfileMenu = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state: any) => state.user);
   const [checked, setChecked] = useState(false);
   const [opened, setOpened] = useState(false);
 
   const handleLogout = () => {
-    dispatch(removeUser());
+    successNotification('You have been logged out', 'Redirecting to home page ...');
+    setTimeout(() => {
+      dispatch(removeUser());
+      navigate("/");
+    }, 4000)
   }
 
   return (
