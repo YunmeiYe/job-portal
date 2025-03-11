@@ -1,26 +1,14 @@
 import './App.css';
-import { createTheme, Divider, MantineProvider } from '@mantine/core';
-import { Notifications } from '@mantine/notifications';
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 import '@mantine/tiptap/styles.css';
 import '@mantine/dates/styles.css';
 import '@mantine/notifications/styles.css';
-import HomePage from './ Pages/HomePage';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import FindJobsPage from './ Pages/FindJobsPage';
-import Header from './Header/Header';
-import Footer from './Footer/Footer';
-import FindTalentPage from './ Pages/FindTalentPage';
-import TalentProfilePage from './ Pages/TalentProfilePage';
-import PostJobPage from './ Pages/PostJobPage';
-import JobDetailsPage from './ Pages/JobDetailsPage';
-import ApplyJobPage from './ Pages/ApplyJobPage';
-import CompanyPage from './ Pages/CompanyPage';
-import PostedJobsPage from './ Pages/PostedJobsPage';
-import JobHistoryPage from './ Pages/JobHistoryPage';
-import SignUpPage from './ Pages/SignUpPage';
-import ProfilePage from './ Pages/ProfilePage';
+import { createTheme, MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
+import { Provider } from 'react-redux'
+import Store from './Store';
+import AppRoutes from './ Pages/AppRoutes';
 
 function App() {
   const theme = createTheme({
@@ -36,31 +24,12 @@ function App() {
     },
   })
   return (
-    <MantineProvider defaultColorScheme='dark' theme={theme}>
-      <Notifications position="top-center" zIndex={1000}/>
-      <BrowserRouter>
-        <div className='relative'>
-          <Header />
-          <Divider size="xs" px="md" />
-          <Routes>
-            <Route path='/find-jobs' element={<FindJobsPage />} />
-            <Route path='/find-talent' element={<FindTalentPage />} />
-            <Route path='/job-details' element={<JobDetailsPage />} />
-            <Route path='/apply-job' element={<ApplyJobPage />} />
-            <Route path='/post-job' element={<PostJobPage />} />
-            <Route path='/posted-jobs' element={<PostedJobsPage />} />
-            <Route path='/job-history' element={<JobHistoryPage />} />
-            <Route path='/talent-profile' element={<TalentProfilePage />} />
-            <Route path='/company' element={<CompanyPage />} />
-            <Route path='/sign-up' element={<SignUpPage />} />
-            <Route path='/login' element={<SignUpPage />} />
-            <Route path='/profile' element={<ProfilePage />} />
-            <Route path='*' element={<HomePage />} />
-          </Routes>
-          <Footer />
-        </div>
-      </BrowserRouter>
-    </MantineProvider>
+    <Provider store={Store}>
+      <MantineProvider defaultColorScheme='dark' theme={theme}>
+        <Notifications position="top-center" zIndex={1000} />
+        <AppRoutes/>
+      </MantineProvider>
+    </Provider>
   )
 }
 

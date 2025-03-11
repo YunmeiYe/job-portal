@@ -1,7 +1,7 @@
 import { notifications } from "@mantine/notifications"
 import { IconCheck, IconX } from "@tabler/icons-react"
 
-const seccessNotification = (title:string, message:string) => {
+const successNotification = (title: string, message: string) => {
   notifications.show({
     title: title,
     message: message,
@@ -13,7 +13,7 @@ const seccessNotification = (title:string, message:string) => {
   })
 }
 
-const errorNotification = (title:string, message:string) => {
+const errorNotification = (title: string, message: string) => {
   notifications.show({
     title: title,
     message: message,
@@ -25,4 +25,4 @@ const errorNotification = (title:string, message:string) => {
   })
 }
 
-export {seccessNotification, errorNotification}
+export { successNotification, errorNotification }

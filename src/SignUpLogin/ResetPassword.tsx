@@ -3,7 +3,7 @@ import { IconAt, IconLock } from '@tabler/icons-react'
 import { useState } from 'react'
 import { changePass, sendOtp, verifyOtp } from '../Services/UserService';
 import { signupValidation } from '../Services/FormValidation';
-import { errorNotification, seccessNotification } from '../Services/Notification';
+import { errorNotification, successNotification } from '../Services/Notification';
 import { useInterval } from '@mantine/hooks';
 
 const ResetPassword = (props: any) => {
@@ -28,7 +28,7 @@ const ResetPassword = (props: any) => {
     setOtpSending(true);
     sendOtp(email).then((res) => {
       console.log(res);
-      seccessNotification("OTP Sent Successfully", "Enter OTP to reset.")
+      successNotification("OTP Sent Successfully", "Enter OTP to reset.")
       setOtpSent(true);
       setOtpSending(false);
       setResendLoader(true);
@@ -43,7 +43,7 @@ const ResetPassword = (props: any) => {
   const handleVerifyOtp = (otp: string) => {
     verifyOtp(email, otp).then((res) => {
       console.log(res);
-      seccessNotification("OTP Verified", "Enter new password.")
+      successNotification("OTP Verified", "Enter new password.")
       setVerified(true);
     }).catch((err) => {
       console.log(err);
@@ -68,7 +68,7 @@ const ResetPassword = (props: any) => {
   const handleResetPassword = () => {
     changePass(email, password).then((res) => {
       console.log(res);
-      seccessNotification("Password Changed Successfully", "Login with new password.")
+      successNotification("Password Changed Successfully", "Login with new password.")
       props.close();
       setOtpSent(false);
       setVerified(false);
