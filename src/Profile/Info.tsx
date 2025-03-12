@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { fields } from "../Data/ProfileData"
 import { ActionIcon } from "@mantine/core";
-import { IconDeviceFloppy, IconPencil, IconBriefcase, IconMapPin } from "@tabler/icons-react";
+import { IconPencil, IconBriefcase, IconMapPin, IconCheck, IconX } from "@tabler/icons-react";
 import { useForm } from '@mantine/form';
 import SelectInput from "./SelectInput";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,19 +25,28 @@ const Info = () => {
       form.setValues({ jobTitle: profile.jobTitle, company: profile.company, location: profile.location });
     } else {
       setEdit(false);
-      let updatedProfile = { ...profile, ...form.getValues() };
-      dispatch(changeProfile(updatedProfile));
-      successNotification("Success", "Profile Updated Successfully");
     }
+  }
+
+  const handleSave = () => {
+    setEdit(false);
+    let updatedProfile = { ...profile, ...form.getValues() };
+    dispatch(changeProfile(updatedProfile));
+    successNotification("Success", "Profile updated successfully");
   }
 
   return (
     <div className="px-3 mt-16">
       <div className="text-3xl font-semibold flex justify-between">
         {user.name}
-        <ActionIcon color="brightSun.4" size={"lg"} variant="subtle" onClick={handleClick}>
-          {edit ? <IconDeviceFloppy className="w-4/5 h-4/5" /> : <IconPencil className="w-4/5 h-4/5" />}
+        <div>
+          {edit && <ActionIcon color="green.8" size={"lg"} variant="subtle" onClick={handleSave}>
+            <IconCheck className="w-4/5 h-4/5"/>
+          </ActionIcon>}
+          <ActionIcon color={ edit? "red.8":"brightSun.4"} size={"lg"} variant="subtle" onClick={handleClick}>
+          {edit ? <IconX className="w-4/5 h-4/5" /> : <IconPencil className="w-4/5 h-4/5" />}
         </ActionIcon>
+        </div>
       </div>
       {edit ?
         <>

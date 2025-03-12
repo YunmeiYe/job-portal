@@ -3,11 +3,21 @@ import { IconBell, IconBowFilled, IconSettings } from '@tabler/icons-react';
 import NavLinks from './NavLinks';
 import { Link, useLocation } from 'react-router-dom';
 import ProfileMenu from './ProfileMenu';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getProfile } from '../Services/ProfileService';
+import { setProfile } from '../Slices/ProfileSlice';
 
 const Header = () => {
   const user = useSelector((state: any) => state.user);
   const location = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getProfile(user.id).then((data: any) => {
+      dispatch(setProfile(data));
+    }).catch((error: any) => console.log(error));
+  }, [])
 
   return (
     location.pathname != "/sign-up" && location.pathname != "/login" &&
