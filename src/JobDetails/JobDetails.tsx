@@ -17,7 +17,7 @@ const JobDetails = (props: any) => {
           </div>
           <div className="flex flex-col gap-1">
             <div className="font-semibold text-2xl">{props.jobTitle}</div>
-            <div className="text-xs text-mine-shaft-300">{props.company} &#x2022; {timeAgo(props.postTime)} &#x2022; {props.applicants? props.applicants.length:0} Applicants</div>
+            <div className="text-xs text-mine-shaft-300">{props.company} &bull; {timeAgo(props.postTime)} &bull; {props.applicants ? props.applicants.length : 0} Applicants</div>
           </div>
         </div>
         <div className="flex flex-col gap-2 items-center">
@@ -26,7 +26,7 @@ const JobDetails = (props: any) => {
           </Link>
           {props.edit
             ? <Button color="red.4" size="sm" variant="outline">Delete</Button>
-            : <IconBookmark className="text-bright-sun-400 cursor-pointer" stroke={1.5}/>}
+            : <IconBookmark className="text-bright-sun-400 cursor-pointer" stroke={1.5} />}
         </div>
       </div>
       <Divider my="xl" />
@@ -37,7 +37,7 @@ const JobDetails = (props: any) => {
               <item.icon className="h-4/5 w-4/5" stroke={1.5} />
             </ActionIcon>
             <div className="text-mine-shaft-300">{item.name}</div>
-            <div className="font-semibold">{ item.id=="packageOffered" && <>$</>}{props ? props[item.id] : "NA"}</div>
+            <div className="font-semibold">{item.id == "packageOffered" && <>$</>}{props ? props[item.id] : "NA"}</div>
           </div>
         )}
       </div>
@@ -45,7 +45,7 @@ const JobDetails = (props: any) => {
       <div>
         <div className="text-xl font-semibold mb-5">Required Skills</div>
         <div className="flex flex-wrap gap-2">
-          {props?.skillsRequired?.map((skill:string, index:number) =>
+          {props?.skillsRequired?.map((skill: string, index: number) =>
             <ActionIcon key={index} className="!h-fit !w-fit font-medium !text-sm" color="brightSun.4" variant="light" size="lg" p="xs" radius="xl" aria-label="Settings">
               {skill}
             </ActionIcon>

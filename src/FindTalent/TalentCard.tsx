@@ -19,7 +19,7 @@ const TalentCard = (props: any) => {
           </div>
           <div>
             <div className="font-semibold text-lg">{props.name}</div>
-            <div className="text-sm text-mine-shaft-300">{props.role} &#x2022; {props.company}</div>
+            <div className="text-sm text-mine-shaft-300">{props.role} &bull; {props.company}</div>
           </div>
         </div>
         <IconHeart stroke={1.5} className="text-mine-shaft-300 cursor-pointer" />

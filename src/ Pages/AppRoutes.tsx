@@ -29,7 +29,7 @@ const AppRoutes = () => {
           <Route path='/find-jobs' element={<FindJobsPage />} />
           <Route path='/find-talent' element={<FindTalentPage />} />
           <Route path='/jobs/:id' element={<JobDetailsPage />} />
-          <Route path='/apply-job' element={<ApplyJobPage />} />
+          <Route path='/apply-job/:id' element={<ApplyJobPage />} />
           <Route path='/post-job' element={<PostJobPage />} />
           <Route path='/posted-jobs' element={<PostedJobsPage />} />
           <Route path='/job-history' element={<JobHistoryPage />} />

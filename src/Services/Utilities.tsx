@@ -28,4 +28,13 @@ const timeAgo = (timestamp: string) => {
   }
 }
 
-export { formatDate, timeAgo }
+const getBase64 = (file: any) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = (error) => reject(error);
+  });
+}
+
+export { formatDate, timeAgo, getBase64 }

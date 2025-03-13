@@ -9,6 +9,7 @@ import Certification from "./Certification"
 import { IconEdit } from "@tabler/icons-react"
 import { useHover } from "@mantine/hooks"
 import { successNotification } from "../Services/Notification"
+import { getBase64 } from "../Services/Utilities"
 
 const Profile = () => {
   const profile = useSelector((state: any) => state.profile);
@@ -20,15 +21,6 @@ const Profile = () => {
     let updatedProfile = { ...profile, picture: picture.split(",")[1] };
     dispatch(changeProfile(updatedProfile));
     successNotification("Success", "Profile picture updated successfully");
-  }
-
-  const getBase64 = (file: any) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = (error) => reject(error);
-    });
   }
 
   return (

@@ -29,7 +29,7 @@ const ExpCard = (props: any) => {
             </div>
             <div className="flex flex-col">
               <div className="font-semibold">{props.title}</div>
-              <div className="text-sm text-mine-shaft-300">{props.company} &#x2022; {props.location}</div>
+              <div className="text-sm text-mine-shaft-300">{props.company} &bull; {props.location}</div>
             </div>
           </div>
           <div className="text-sm text-mine-shaft-300">

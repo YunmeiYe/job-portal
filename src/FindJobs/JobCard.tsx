@@ -13,16 +13,16 @@ const JobCard = (props: any) => {
           </div>
           <div>
             <div className="font-semibold">{props.jobTitle}</div>
-            <div className="text-xs text-mine-shaft-300">{props.company} &#x2022; {props.applicants ? props.applicants.length : 0} Applicants</div>
+            <div className="text-xs text-mine-shaft-300">{props.company} &bull; {props.applicants ? props.applicants.length : 0} Applicants</div>
           </div>
         </div>
         <IconBookmark className="text-mine-shaft-300 cursor-pointer" />
       </div>
       <div className="flex gap-2 [&>div]:py-1 [&>div]:px-2 [&>div]:bg-mine-shaft-800 [&>div]:text-bright-sun-400 [&>div]:rounded-lg text-xs">
         <div className="flex gap-1"><IconBriefcase className="w-4 h-4" />{props.experience}</div>
-        <div className="flex gap-1"><IconRecharging className="w-4 h-4"/>{props.jobType}</div>        
+        <div className="flex gap-1"><IconRecharging className="w-4 h-4" />{props.jobType}</div>
       </div>
-      <div className="flex gap-1 px-2 text-xs text-bright-sun-400"><IconMapPin className="w-4 h-4"/>{props.location}</div>
+      <div className="flex gap-1 px-2 text-xs text-bright-sun-400"><IconMapPin className="w-4 h-4" />{props.location}</div>
       <div className="h-1/4">
         <Text size="xs" className="text-mine-shaft-300" lineClamp={3}>
           {props.description}
