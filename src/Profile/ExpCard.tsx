@@ -10,7 +10,7 @@ const ExpCard = (props: any) => {
   const [edit, setEdit] = useState(false);
   const dispatch = useDispatch();
   const profile = useSelector((state: any) => state.profile);
-  
+
   const handleDelete = () => {
     let exp = [...profile.experiences];
     exp.splice(props.index, 1);
@@ -25,7 +25,7 @@ const ExpCard = (props: any) => {
         <div className="flex justify-between">
           <div className="flex gap-2 items-center">
             <div className="p-2 bg-mine-shaft-800 rounded-md">
-              <img className="h-7" src={`src/assets/Icons/${props.company}.png`} alt="" />
+              <img className="h-7" src={`/assets/Icons/${props.company}.png`} alt="" />
             </div>
             <div className="flex flex-col">
               <div className="font-semibold">{props.title}</div>

@@ -22,7 +22,7 @@ const JobCategory = () => {
           <CarouselSlide key={index}>
             <div className="flex flex-col items-center w-64 gap-2 border border-bright-sun-400 p-5 my-5 transition duration-300 ease-in-out rounded-xl hover:cursor-pointer hover:shadow-[0_0_5px_2px_black] !shadow-bright-sun-300">
               <div className="p-2 bg-bright-sun-300 rounded-full">
-                <img className="w-8 h-8" src={`src/assets/Categories/${category.name}.png`} alt={category.name} />
+                <img className="w-8 h-8" src={`/assets/Categories/${category.name}.png`} alt={category.name} />
               </div>
               <div className="text-mine-shaft-200 text-xl font-semibold">{category.name}</div>
               <div className="text-sm text-center text-mine-shaft-300">{category.desc}</div>

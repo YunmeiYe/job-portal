@@ -4,8 +4,8 @@ const base_url = "http://localhost:8080/users/"
 
 const registerUser = async (user: any) => {
   try {
-    const res = await axios.post(`${base_url}register`, user);
-    return res.data;
+    const result = await axios.post(`${base_url}register`, user);
+    return result.data;
   } catch (error) {
     throw error;
   }
@@ -13,8 +13,8 @@ const registerUser = async (user: any) => {
 
 const loginUser = async (login: any) => {
   try {
-    const res = await axios.post(`${base_url}login`, login);
-    return res.data;
+    const result = await axios.post(`${base_url}login`, login);
+    return result.data;
   } catch (error) {
     throw error;
   }
@@ -22,8 +22,8 @@ const loginUser = async (login: any) => {
 
 const sendOtp = async (email: any) => {
   try {
-    const res = await axios.post(`${base_url}sendOtp/${email}`);
-    return res.data;
+    const result = await axios.post(`${base_url}sendOtp/${email}`);
+    return result.data;
   } catch (error) {
     throw error;
   }
@@ -31,8 +31,8 @@ const sendOtp = async (email: any) => {
 
 const verifyOtp = async (email: any, otp: any) => {
   try {
-    const res = await axios.post(`${base_url}verifyOtp/${email}/${otp}`);
-    return res.data;
+    const result = await axios.post(`${base_url}verifyOtp/${email}/${otp}`);
+    return result.data;
   } catch (error) {
     throw error;
   }
@@ -40,8 +40,8 @@ const verifyOtp = async (email: any, otp: any) => {
 
 const changePass = async (email: any, password: any) => {
   try {
-    const res = await axios.post(`${base_url}changePass`, { email, password });
-    return res.data;
+    const result = await axios.post(`${base_url}changePass`, { email, password });
+    return result.data;
   } catch (error) {
     throw error;
   }

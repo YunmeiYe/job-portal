@@ -7,8 +7,8 @@ const TalentProfile = (props: any) => {
   return (
     <div className="w-2/3">
       <div className="relative">
-        <img className="rounded-t-2xl" src="src/assets/profileBanner.jpg" alt="" />
-        <img className="w-48 h-48 rounded-full -bottom-1/3 absolute left-3 border-mine-shaft-950 border-8" src="src/assets/avatar.png" alt="" />
+        <img className="rounded-t-2xl" src="/assets/profileBanner.jpg" alt="" />
+        <img className="w-48 h-48 rounded-full -bottom-1/3 absolute left-3 border-mine-shaft-950 border-8" src="/assets/avatar.png" alt="" />
       </div>
       <div className="px-3 mt-16">
         <div className="text-3xl font-semibold flex justify-between">

@@ -20,10 +20,10 @@ export const works = [
 ]
 
 export const testimonials = [
-  { name: 'Jamie Larson', avatar: "src/assets/avatar1.png", testimonial: "This job portal made job search easy and quick. Recommended to all job seekers!", rating: 5 },
-  { name: 'Shivam Patel', avatar: "src/assets/avatar2.png", testimonial: "Found my dream job within a week! The application process was smooth.", rating: 4.5 },
-  { name: 'Lauren Smith', avatar: "src/assets/avatar.png", testimonial: "Highly efficient job portal with excellent resources. Helped me land a great position.", rating: 5 },
-  { name: 'Swapnil Pandey', avatar: "src/assets/avatar2.png", testimonial: "I secured a job offer within days of applying. Exceptional user experience and support.", rating: 5 }
+  { name: 'Jamie Larson', avatar: "/assets/avatar1.png", testimonial: "This job portal made job search easy and quick. Recommended to all job seekers!", rating: 5 },
+  { name: 'Shivam Patel', avatar: "/assets/avatar2.png", testimonial: "Found my dream job within a week! The application process was smooth.", rating: 4.5 },
+  { name: 'Lauren Smith', avatar: "/assets/avatar.png", testimonial: "Highly efficient job portal with excellent resources. Helped me land a great position.", rating: 5 },
+  { name: 'Swapnil Pandey', avatar: "/assets/avatar2.png", testimonial: "I secured a job offer within days of applying. Exceptional user experience and support.", rating: 5 }
 ]
 
 export const footerLinks = [

@@ -4,8 +4,8 @@ const base_url = "http://localhost:8080/profiles/"
 
 const getProfile = async (id: number) => {
   try {
-    const res = await axios.get(`${base_url}get/${id}`);
-    return res.data;
+    const result = await axios.get(`${base_url}get/${id}`);
+    return result.data;
   } catch (error) {
     throw error;
   }
@@ -13,8 +13,8 @@ const getProfile = async (id: number) => {
 
 const updateProfile = async (profile: any) => {
   try {
-    const res = await axios.put(`${base_url}update`, profile);
-    return res.data;
+    const result = await axios.put(`${base_url}update`, profile);
+    return result.data;
   } catch (error) {
     throw error;
   }

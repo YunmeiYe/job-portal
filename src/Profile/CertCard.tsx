@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux"
 const CertCard = (props: any) => {
   const dispatch = useDispatch();
   const profile = useSelector((state: any) => state.profile);
-  
+
   const handleDelete = () => {
     let certs = [...profile.certifications];
     certs.splice(props.index, 1);
@@ -16,12 +16,12 @@ const CertCard = (props: any) => {
     dispatch(changeProfile(updatedProfile));
     successNotification("Success", "Certificate deleted successfully");
   }
-  
+
   return (
     <div className="flex justify-between">
       <div className="flex gap-2 items-center">
         <div className="p-2 bg-mine-shaft-800 rounded-md">
-          <img className="h-7" src={`src/assets/Icons/${props.issuer}.png`} alt="" />
+          <img className="h-7" src={`/assets/Icons/${props.issuer}.png`} alt="" />
         </div>
         <div className="flex flex-col">
           <div className="font-semibold">{props.name}</div>

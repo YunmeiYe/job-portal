@@ -35,7 +35,7 @@ const ProfileMenu = () => {
       <Menu.Target>
         <div className='flex items-center gap-2 cursor-pointer'>
           <div>{user.name}</div>
-          <Avatar src={profile.picture?`data:image/jpeg;base64, ${profile.picture}`:"src/assets/avatar.png"} alt="it's me" />
+          <Avatar src={profile.picture ? `data:image/jpeg;base64, ${profile.picture}` : "/assets/avatar.png"} alt="it's me" />
         </div>
       </Menu.Target>
       <Menu.Dropdown onChange={() => setOpened(true)}>
