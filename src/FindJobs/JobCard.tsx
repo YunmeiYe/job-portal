@@ -1,11 +1,27 @@
-import { IconBookmark, IconBriefcase, IconClockHour3, IconMapPin, IconRecharging } from "@tabler/icons-react"
-import { Divider, Text } from '@mantine/core'
+import { IconBookmark, IconBookmarkFilled, IconBriefcase, IconClockHour3, IconMapPin, IconRecharging } from "@tabler/icons-react"
+import { Button, Divider, Text } from '@mantine/core'
 import { Link } from "react-router-dom"
 import { timeAgo } from "../Services/Utilities"
+import { useDispatch, useSelector } from "react-redux"
+import { changeProfile } from "../Slices/ProfileSlice"
 
 const JobCard = (props: any) => {
+  const profile = useSelector((state: any) => state.profile);
+  const dispatch = useDispatch();
+
+  const handleSaveJob = () => {
+    let savedJobs = [...profile.savedJobs];
+    if (savedJobs.includes(props.id)) {
+      savedJobs = savedJobs.filter(jobId => jobId !== props.id);
+    } else {
+      savedJobs.push(props.id);
+    }
+    let updatedProfile = { ...profile, savedJobs };
+    dispatch(changeProfile(updatedProfile));
+  }
+
   return (
-    <Link to={`/jobs/${props.id}`} className="bg-mine-shaft-900 p-4 w-72 flex flex-col gap-3 rounded-xl hover:shadow-[0_0_5px_1px_yellow] !shadow-bright-sun-400">
+    <div className="bg-mine-shaft-900 p-4 w-72 flex flex-col gap-3 rounded-xl hover:shadow-[0_0_5px_1px_yellow] !shadow-bright-sun-400">
       <div className="flex justify-between">
         <div className="flex gap-2 items-center">
           <div className="p-2 bg-mine-shaft-800 rounded-md">
@@ -16,7 +32,9 @@ const JobCard = (props: any) => {
             <div className="text-xs text-mine-shaft-300">{props.company} &bull; {props.applicants ? props.applicants.length : 0} Applicants</div>
           </div>
         </div>
-        <IconBookmark className="text-mine-shaft-300 cursor-pointer" />
+        {profile?.savedJobs?.includes(props.id)
+          ? <IconBookmarkFilled onClick={handleSaveJob} className="cursor-pointer text-bright-sun-400" />
+          : <IconBookmark onClick={handleSaveJob} className="text-mine-shaft-300 cursor-pointer hover:text-bright-sun-400" />}
       </div>
       <div className="flex gap-2 [&>div]:py-1 [&>div]:px-2 [&>div]:bg-mine-shaft-800 [&>div]:text-bright-sun-400 [&>div]:rounded-lg text-xs">
         <div className="flex gap-1"><IconBriefcase className="w-4 h-4" />{props.experience}</div>
@@ -37,7 +55,10 @@ const JobCard = (props: any) => {
           <IconClockHour3 className="w-5 h-5" stroke={1.5} />Posted {timeAgo(props.postTime)}
         </div>
       </div>
-    </Link>
+      <Link to={`/jobs/${props.id}`}>
+        <Button fullWidth color="brightSun.4" variant="outline">View</Button>
+      </Link>
+    </div>
   )
 }
 

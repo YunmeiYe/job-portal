@@ -10,7 +10,7 @@ const Jobs = () => {
     getAllJobs().then((res) => {
       setJobList(res);
     }).catch((err) => {
-      errorNotification("Failed", err.response.data.errorMessage)
+      errorNotification("Error", err.response.data.errorMessage)
     })
   }, [])
 
