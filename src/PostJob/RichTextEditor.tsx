@@ -6,8 +6,12 @@ import Underline from '@tiptap/extension-underline';
 import TextAlign from '@tiptap/extension-text-align';
 import Superscript from '@tiptap/extension-superscript';
 import SubScript from '@tiptap/extension-subscript';
+import { useEffect } from 'react';
 
-const TextEditor = (props:any) => {
+const TextEditor = (props: any) => {
+  useEffect(() => {
+    editor?.commands.setContent(props.data);
+  },[props])
   const editor = useEditor({
     extensions: [
       StarterKit,

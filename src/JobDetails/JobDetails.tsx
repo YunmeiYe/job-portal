@@ -7,6 +7,8 @@ import { timeAgo } from "../Services/Utilities"
 import { useSelector, useDispatch } from "react-redux"
 import { changeProfile } from "../Slices/ProfileSlice"
 import { useEffect, useState } from "react"
+import { postJob } from "../Services/JobService"
+import { errorNotification, successNotification } from "../Services/Notification"
 
 const JobDetails = (props: any) => {
   const cleanHTML = DOMPurify.sanitize(props.description);
@@ -34,12 +36,20 @@ const JobDetails = (props: any) => {
     dispatch(changeProfile(updatedProfile));
   }
 
+  const handleClose = () => {
+    postJob({ ...props, jobStatus: "CLOSED" }).then(() => {
+      successNotification("Success", "Job closed successfully");
+    }).catch((err) => {
+      errorNotification("Error", err.response.data.errorMessage);
+    });
+  }
+
   return (
     <div className="w-2/3">
       <div className="flex justify-between">
         <div className="flex gap-2 items-center">
           <div className="p-3 bg-mine-shaft-800 rounded-xl">
-            <img className="h-14 w-14" src={`/assets/Icons/${props.company}.png`} alt="Google" />
+            <img className="h-14 w-14" src={`/assets/Icons/${props.company}.png`} alt="" />
           </div>
           <div className="flex flex-col gap-1">
             <div className="font-semibold text-2xl">{props.jobTitle}</div>
@@ -48,14 +58,14 @@ const JobDetails = (props: any) => {
         </div>
         <div className="flex flex-col gap-2 items-center">
           {(props.edit || !applied) &&
-            <Link to={`/apply-job/${props.id}`}>
-              <Button color="brightSun.4" size="sm" variant="light">{props.edit ? "Edit" : "Apply"}</Button>
+            <Link to={props.edit?`/post-job/${props.id}`:`/apply-job/${props.id}`}>
+              <Button color="brightSun.4" size="sm" variant="light" >{props.closed? "Reopen": props.edit ? "Edit" : "Apply"}</Button>
             </Link>
           }
-          {applied && <Button color="green.8" size="sm" variant="light" className="pointer-events-none">Applied</Button>}
+          {!props.edit && applied && <Button color="green.8" size="sm" variant="light" className="pointer-events-none">Applied</Button>}
           {
-            props.edit
-              ? <Button color="red.4" size="sm" variant="outline">Delete</Button>
+            props.edit && !props.closed
+              ? <Button onClick={handleClose} color="red.4" size="sm" variant="outline">Close</Button>
               : profile?.savedJobs?.includes(props.id)
                 ? <IconBookmarkFilled onClick={handleSaveJob} className="cursor-pointer text-bright-sun-400" />
                 : <IconBookmark onClick={handleSaveJob} className="text-mine-shaft-300 cursor-pointer hover:text-bright-sun-400" />

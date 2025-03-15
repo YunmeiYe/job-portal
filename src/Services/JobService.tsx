@@ -20,7 +20,7 @@ const getAllJobs = async () => {
   }
 }
 
-const getJob = async (id: string) => {
+const getJob = async (id: any) => {
   try {
     const result = await axios.get(`${base_url}get/${id}`);
     return result.data;
@@ -38,4 +38,22 @@ const applyJob = async (id: any, applicant: any) => {
   }
 }
 
-export { postJob, getAllJobs, getJob, applyJob }
+const getJobPostedBy = async (id: any) => {
+  try {
+    const result = await axios.get(`${base_url}postedBy/${id}`);
+    return result.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+const changeAppStatus = async (application: any) => {
+  try {
+    const result = await axios.post(`${base_url}changeAppStatus`, application);
+    return result.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export { postJob, getAllJobs, getJob, applyJob, getJobPostedBy, changeAppStatus }

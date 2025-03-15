@@ -1,6 +1,23 @@
 const formatDate = (dateString: string) => {
   const date = new Date(dateString);
-  const options = { year: 'numeric' as const, month: 'short' as const };
+  const options = {
+    year: 'numeric' as const,
+    month: 'short' as const,
+    day: 'numeric' as const,
+  };
+  return date.toLocaleString('en-US', options);
+}
+
+const formatTime = (dateString: string) => {
+  const date = new Date(dateString);
+  const options = {
+    year: 'numeric' as const,
+    month: 'long' as const,
+    day: 'numeric' as const,
+    hour: 'numeric' as const,
+    minute: 'numeric' as const,
+    timeZone: 'UTC' as const,
+  };
   return date.toLocaleString('en-US', options);
 }
 
@@ -37,4 +54,15 @@ const getBase64 = (file: any) => {
   });
 }
 
-export { formatDate, timeAgo, getBase64 }
+const openBase64PDF = (base64String:any) => {
+  const byteChars = atob(base64String);
+  const byteNumbers = new Array(byteChars.length);
+  for (let i = 0; i < byteChars.length; i++) {
+    byteNumbers[i] = byteChars.charCodeAt(i);
+  };
+  const blob = new Blob([new Uint8Array(byteNumbers)], { type: 'application/pdf' });
+  const blobURL = URL.createObjectURL(blob);
+  window.open(blobURL, '_blank');
+}
+
+export { formatDate,formatTime, timeAgo, getBase64, openBase64PDF }

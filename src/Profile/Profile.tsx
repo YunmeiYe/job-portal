@@ -34,7 +34,7 @@ const Profile = () => {
           <FileInput onChange={handleFileChange} className="absolute z-[301] w-full !h-full [&_*]:!h-full [&_*]:!rounded-full [&_*]:!text-transparent" variant="transparent" size="lg" radius={"xl"} accept="image/png,image/jpeg" />
         </div>
       </div>
-      <Info />
+      <Info {...profile} />
       <Divider mx="xs" my="xl" />
       <About />
       <Divider mx="xs" my="xl" />

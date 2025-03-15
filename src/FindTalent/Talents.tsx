@@ -1,8 +1,18 @@
 import Sort from "../FindJobs/Sort"
 import TalentCard from "./TalentCard"
 import { talents } from "../Data/TalentData"
+import { useState, useEffect } from "react";
+import { getAllProfiles } from "../Services/ProfileService";
 
 const Talents = () => {
+  const [talents, setTalents] = useState([{}]);
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    getAllProfiles().then((res) => {
+      setTalents(res);
+    }).catch((err)=>{console.log(err);});
+  }, []);
   return (
     <div className="p-5">
       <div className="flex justify-between">

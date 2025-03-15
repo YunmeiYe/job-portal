@@ -2,9 +2,18 @@ import axios from 'axios'
 
 const base_url = "http://localhost:8080/profiles/"
 
-const getProfile = async (id: number) => {
+const getProfile = async (id: any) => {
   try {
     const result = await axios.get(`${base_url}get/${id}`);
+    return result.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+const getAllProfiles = async () => {
+  try {
+    const result = await axios.get(`${base_url}getAll`);
     return result.data;
   } catch (error) {
     throw error;
@@ -20,4 +29,4 @@ const updateProfile = async (profile: any) => {
   }
 }
 
-export { getProfile, updateProfile }
+export { getProfile, getAllProfiles, updateProfile }
