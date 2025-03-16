@@ -6,6 +6,7 @@ const successNotification = (title: string, message: string) => {
     title: title,
     message: message,
     withCloseButton: true,
+    autoClose: 2000,
     icon: <IconCheck style={{ width: "90%", height: "90%" }} />,
     color: "teal",
     withBorder: true,

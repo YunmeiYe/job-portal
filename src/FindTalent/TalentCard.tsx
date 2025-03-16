@@ -29,7 +29,6 @@ const TalentCard = (props: any) => {
   }, [props])
   
   const handleOffer = (status: string) => {
-    // successNotification("Offered", "Offer has been sent successfully")
     let interview:any = { id, applicantId: profile?.id, applicationStatus: status};
     if (status == "INTERVIEWING") {
       const [hours, minutes] = time.split(":").map(Number);
@@ -41,7 +40,7 @@ const TalentCard = (props: any) => {
       if (status == "INTERVIEWING") successNotification("Interview Scheduled", "Interview scheduled successfully");
       else if (status == "OFFERED") successNotification("Offered", "Offer has been sent successfully");
       else successNotification("Rejected", "Application has been rejected");
-      window.location.reload();
+      setTimeout(() => {window.location.reload();}, 1000);
     }).catch((err) =>
     {
       console.log(err);
@@ -73,7 +72,7 @@ const TalentCard = (props: any) => {
       {props.invited
         ? <div className='flex gap-1 text-mine-shaft-200 text-sm items-center'><IconCalendarMonth stroke={1.5} className='w-5 h-5' />Interview: { formatTime(props.interviewTime)}</div>
         : <div className="flex justify-between">
-          <div className="font-semibold text-mine-shaft-200">Exp: { props.totalExp && props.totalExp > 1 ? props.totalExp + " Years" : 1 + " Year"} </div>
+          <div className="font-semibold text-mine-shaft-200 text-sm">Experience: { props.totalExp && props.totalExp > 1 ? props.totalExp + " Years" : 1 + " Year"} </div>
           <div className="flex gap-1 text-xs items-center text-mine-shaft-400">
             <IconMapPin className="w-5 h-5" stroke={1.5} /> {profile.location}
           </div>
@@ -103,7 +102,7 @@ const TalentCard = (props: any) => {
         <div className='flex flex-col gap-4'>
           <DateInput value={date} minDate={new Date()} onChange={setDate} label="Date" placeholder="Enter Date" />
           <TimeInput label="Time" value={time} onChange={(e)=>setTime(e.currentTarget.value)} ref={ref} onClick={() => ref.current?.showPicker()} />
-          <Button onClick={()=>handleOffer("INTERVIEWING")} color="brightSun.4" variant="light" fullWidth>Schedule</Button>
+          <Button onClick={() => { close(); handleOffer("INTERVIEWING") }} color="brightSun.4" variant="light" fullWidth>Schedule</Button>
         </div>
       </Modal>
       <Modal opened={app} onClose={closeApp} title="Application Detail" centered>
