@@ -31,6 +31,9 @@ const TalentProfile = () => {
         <div className="flex gap-1 text-lg items-center text-mine-shaft-400">
           <IconMapPin className="w-5 h-5" stroke={1.5} /> {profile?.location}
         </div>
+        <div className="flex gap-1 text-lg items-center text-mine-shaft-400">
+          <IconBriefcase className="w-5 h-5" stroke={1.5} /> Experience: {profile.totalExp > 1 ? profile.totalExp + " Years" : 1 + " Year"}
+        </div>
       </div>
       <Divider mx="xs" my="xl" />
       <div className="px-3">

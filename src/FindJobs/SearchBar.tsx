@@ -10,13 +10,10 @@ const SearchBar = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState<[number, number]>([80, 150]);
 
-  const handleChange = (name: any, event: any) => {
-    if (name == "salary") {
+  const handleChange = (event: any) => {
       dispatch(updateFilter({ salary: event }));
-    } else {
-      dispatch(updateFilter({ name: event.target.value }));
-    }
   }
+  
   return (
     <div className="flex px-5 py-8">
       {dropdownData.map((item, index) =>
@@ -40,7 +37,7 @@ const SearchBar = () => {
           max={300}
           minRange={1}
           onChange={setValue}
-          onChangeEnd={(e) => handleChange("salary", e)}
+          onChangeEnd={(e) => handleChange(e)}
           labelTransitionProps={{
             transition: 'skew-down',
             duration: 150,

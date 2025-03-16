@@ -4,22 +4,37 @@ import { useEffect, useState } from "react"
 import { getAllJobs } from "../Services/JobService"
 import { useDispatch, useSelector } from "react-redux"
 import { resetFilter } from "../Slices/FilterSlice"
+import { resetSort } from "../Slices/SortSlice"
 
 const Jobs = () => {
   const [jobList, setJobList] = useState([{}]);
   const [filteredJobs, setFilteredJobs] = useState([{}]);
   const filter = useSelector((state: any) => state.filter);
+  const sort = useSelector((state: any) => state.sort);
   const dispatch = useDispatch();
 
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(resetFilter());
+    dispatch(resetSort());
     getAllJobs().then((res) => {
-      setJobList(res);
+      setJobList(res.filter((job:any)=>job.jobStatus =="ACTIVE"));
     }).catch((err) => {
       console.log(err);
     })
   }, []);
+
+  useEffect(() => {
+    if (sort == "Most Recent") {
+      setJobList([...jobList].sort((a:any, b:any) => new Date(b.postTime).getTime() - new Date(a.postTime).getTime()));
+    };
+    if (sort == "Salary (Low to High)") {
+      setJobList([...jobList].sort((a:any, b:any) => a.packageOffered - b.packageOffered));
+    };
+    if (sort == "Salary (High to Low)") {
+      setJobList([...jobList].sort((a:any, b:any) => b.packageOffered - a.packageOffered));
+    };
+  }, [sort]);
 
   useEffect(() => {
     let filteredJobs = jobList;
@@ -37,7 +52,7 @@ const Jobs = () => {
       filteredJobs = filteredJobs.filter((job:any) => filter["Job Type"].some((jobType: any) => job.jobType?.toLowerCase().includes(jobType.toLowerCase())));
     };
     if (filter.salary && filter.salary.length > 0) {
-      filteredJobs = filteredJobs.filter((job:any) => job.packageOffered >= filter.salary[0] && job.packageOffered <= filter.salary[1]);
+      filteredJobs = filteredJobs.filter((job:any) => job.packageOffered/1000 >= filter.salary[0] && job.packageOffered/1000 <= filter.salary[1]);
     };
     setFilteredJobs(filteredJobs);
   }, [filter, jobList]);
@@ -47,7 +62,7 @@ const Jobs = () => {
       <div className="flex justify-between">
         <div className="text-2xl font-semibold">Recommended Jobs</div>
         <div>
-          <Sort />
+          <Sort sort="job"/>
         </div>
       </div>
       <div className="mt-10 flex flex-wrap gap-5">
