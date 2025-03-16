@@ -73,7 +73,7 @@ const TalentCard = (props: any) => {
       {props.invited
         ? <div className='flex gap-1 text-mine-shaft-200 text-sm items-center'><IconCalendarMonth stroke={1.5} className='w-5 h-5' />Interview: { formatTime(props.interviewTime)}</div>
         : <div className="flex justify-between">
-          <div className="font-semibold text-mine-shaft-200">$160K</div>
+          <div className="font-semibold text-mine-shaft-200">Exp: { props.totalExp && props.totalExp > 1 ? props.totalExp + " Years" : 1 + " Year"} </div>
           <div className="flex gap-1 text-xs items-center text-mine-shaft-400">
             <IconMapPin className="w-5 h-5" stroke={1.5} /> {profile.location}
           </div>
