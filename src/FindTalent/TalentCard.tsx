@@ -40,7 +40,7 @@ const TalentCard = (props: any) => {
       if (status == "INTERVIEWING") successNotification("Interview Scheduled", "Interview scheduled successfully");
       else if (status == "OFFERED") successNotification("Offered", "Offer has been sent successfully");
       else successNotification("Rejected", "Application has been rejected");
-      setTimeout(() => {window.location.reload();}, 1000);
+      setTimeout(() => { window.location.reload()}, 1000);
     }).catch((err) =>
     {
       console.log(err);

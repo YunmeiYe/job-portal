@@ -39,6 +39,7 @@ const JobDetails = (props: any) => {
   const handleClose = () => {
     postJob({ ...props, jobStatus: "CLOSED" }).then(() => {
       successNotification("Success", "Job closed successfully");
+      setTimeout(() => {window.location.reload() }, 1000);
     }).catch((err) => {
       errorNotification("Error", err.response.data.errorMessage);
     });

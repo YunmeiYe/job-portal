@@ -1,5 +1,5 @@
-import { Button, Indicator } from '@mantine/core';
-import { IconBell, IconBowFilled, IconSettings } from '@tabler/icons-react';
+import { Button } from '@mantine/core';
+import { IconBowFilled } from '@tabler/icons-react';
 import NavLinks from './NavLinks';
 import { Link, useLocation } from 'react-router-dom';
 import ProfileMenu from './ProfileMenu';
@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getProfile } from '../Services/ProfileService';
 import { setProfile } from '../Slices/ProfileSlice';
+import NotificationMenu from './NotificationMenu';
 
 const Header = () => {
   const user = useSelector((state: any) => state.user);
@@ -14,10 +15,12 @@ const Header = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getProfile(user.id).then((data: any) => {
-      dispatch(setProfile(data));
-    }).catch((error: any) => console.log(error));
-  }, [])
+    if (user) {
+      getProfile(user.id).then((data: any) => {
+        dispatch(setProfile(data));
+      }).catch((error: any) => console.log(error));
+    }
+  }, [user])
 
   return (
     location.pathname != "/sign-up" && location.pathname != "/login" &&
@@ -34,11 +37,7 @@ const Header = () => {
         {/* <div className='bg-mine-shaft-900 rounded-full p-1.5'>
           <IconSettings stroke={1.5} />
         </div> */}
-        <div className='bg-mine-shaft-900 rounded-full p-1.5'>
-          <Indicator color="brightSun.4" size={8} offset={7} processing>
-            <IconBell stroke={1.5} />
-          </Indicator>
-        </div>
+          {user ?<NotificationMenu/>:<></>}
       </div>
     </div>
   )
