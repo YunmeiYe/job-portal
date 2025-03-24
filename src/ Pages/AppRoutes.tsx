@@ -15,10 +15,10 @@ import PostJobPage from './PostJobPage'
 import ProfilePage from './ProfilePage'
 import SignUpPage from './SignUpPage'
 import TalentProfilePage from './TalentProfilePage'
-
+import ProtectedRoute from '../Services/ProtectedRoute'
+import PublicRoute from '../Services/PublicRoute'
 
 const AppRoutes = () => {
-  const user = useSelector((state:any)=>state.user);
 
   return (
     <BrowserRouter>
@@ -30,13 +30,13 @@ const AppRoutes = () => {
           <Route path='/find-talent' element={<FindTalentPage />} />
           <Route path='/jobs/:id' element={<JobDetailsPage />} />
           <Route path='/apply-job/:id' element={<ApplyJobPage />} />
-          <Route path='/post-job/:id?' element={<PostJobPage />} />
-          <Route path='/posted-jobs/:id?' element={<PostedJobsPage />} />
-          <Route path='/job-history' element={<JobHistoryPage />} />
+          <Route path='/post-job/:id?' element={<ProtectedRoute allowedRoles={['EMPLOYER']}><PostJobPage /></ProtectedRoute>} />
+          <Route path='/posted-jobs/:id?' element={<ProtectedRoute allowedRoles={['EMPLOYER']}><PostedJobsPage /></ProtectedRoute>} />
+          <Route path='/job-history' element={<ProtectedRoute allowedRoles={['APPLICANT']}><JobHistoryPage /></ProtectedRoute>} />
           <Route path='/talent-profile/:id' element={<TalentProfilePage />} />
           <Route path='/company/:name' element={<CompanyPage />} />
-          <Route path='/sign-up' element={user ? <Navigate to={"/"} /> : <SignUpPage />} />
-          <Route path='/login' element={user ? <Navigate to={"/"} /> : <SignUpPage />} />
+          <Route path='/sign-up' element={<PublicRoute><SignUpPage /></PublicRoute>} />
+          <Route path='/login' element={<PublicRoute><SignUpPage /></PublicRoute>} />
           <Route path='/profile' element={<ProfilePage />} />
           <Route path='*' element={<HomePage />} />
         </Routes>

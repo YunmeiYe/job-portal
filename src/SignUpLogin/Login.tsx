@@ -2,13 +2,15 @@ import { Button, LoadingOverlay, PasswordInput, TextInput } from "@mantine/core"
 import { IconAt, IconLock } from "@tabler/icons-react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { loginUser } from "../Services/UserService"
+import { loginUser } from "../Services/AuthService"
 import { loginValidation } from "../Services/FormValidation"
 import { useDisclosure } from "@mantine/hooks"
 import ResetPassword from "./ResetPassword"
 import { useDispatch } from "react-redux"
 import { setUser } from "../Slices/UserSlice"
 import { errorNotification, successNotification } from "../Services/Notification"
+import { setJwt } from "../Slices/JWTSlice"
+import { jwtDecode } from "jwt-decode"
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -35,16 +37,17 @@ const Login = () => {
 
     if (valid) {
       setLoading(true);
-      loginUser(data).then(res => {
-        console.log(res);
+      loginUser(data).then((res:any) => {
         setData(form);
         successNotification("Login Successfully", 'Redirecting to home page ...');
+        dispatch(setJwt(res.jwt));
+        const decoded = jwtDecode(res.jwt);
+        dispatch(setUser({...decoded, email:decoded.sub}));
         setTimeout(() => {
           setLoading(false);
-          dispatch(setUser(res));
           navigate("/");
         }, 4000)
-      }).catch(err => {
+      }).catch((err:any) => {
         setLoading(false);
         console.log(err);
         errorNotification("Login Failed", err.response.data.errorMessage);

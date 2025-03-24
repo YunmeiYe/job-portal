@@ -18,6 +18,7 @@ const PostJob = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    // if (!user) navigate("/login");
     if (id !== "0") {
       getJob(id).then((res) => {
         form.setValues(res);

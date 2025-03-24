@@ -90,8 +90,8 @@ const SignUp = () => {
           withAsterisk
         >
           <Group mt={"xs"}>
-            <Radio className="py-4 px-6 hover:bg-mine-shaft-900 has-[:checked]:bg-bright-sun-400/5 border border-mine-shaft-800 has-[:checked]:border-bright-sun-400 rounded-lg" autoContrast value="APPLICANT" label="Applicant" />
-            <Radio className="py-4 px-6 hover:bg-mine-shaft-900 has-[:checked]:bg-bright-sun-400/5 border border-mine-shaft-800 has-[:checked]:border-bright-sun-400 rounded-lg" autoContrast value="EMPLOYER" label="Employer" />
+            <Radio className="py-4 px-6 hover:bg-mine-shaft-900 has-[:checked]:bg-bright-sun-400/5 border border-mine-shaft-800 has-[:checked]:border-bright-sun-400 rounded-lg" value="APPLICANT" label="Applicant" iconColor="dark.8" />
+            <Radio className="py-4 px-6 hover:bg-mine-shaft-900 has-[:checked]:bg-bright-sun-400/5 border border-mine-shaft-800 has-[:checked]:border-bright-sun-400 rounded-lg" value="EMPLOYER" label="Employer" iconColor="dark.8"/>
           </Group>
         </Radio.Group>
         <Checkbox autoContrast label={<>I accept{' '}<Anchor>terms and conditions</Anchor></>} />

@@ -1,26 +1,40 @@
 import { Button } from '@mantine/core';
 import { IconBowFilled } from '@tabler/icons-react';
 import NavLinks from './NavLinks';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ProfileMenu from './ProfileMenu';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getProfile } from '../Services/ProfileService';
 import { setProfile } from '../Slices/ProfileSlice';
 import NotificationMenu from './NotificationMenu';
+import { jwtDecode } from 'jwt-decode';
+import { setUser } from '../Slices/UserSlice';
+import { setupResponseInterceptor } from '../Interceptor/AxiosInterceptor';
 
 const Header = () => {
   const user = useSelector((state: any) => state.user);
+  const token = useSelector((state: any) => state.jwt);
   const location = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
+    setupResponseInterceptor(navigate);
+  }, [navigate])
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token == "") {
+      const decoded = jwtDecode(localStorage.getItem('token') || "");
+      dispatch(setUser({ ...decoded, email: decoded.sub }));
+    }
     if (user) {
-      getProfile(user.id).then((data: any) => {
+      getProfile(user?.profileId).then((data: any) => {
         dispatch(setProfile(data));
       }).catch((error: any) => console.log(error));
     }
-  }, [user])
+  }, [token, navigate])
 
   return (
     location.pathname != "/sign-up" && location.pathname != "/login" &&
@@ -37,7 +51,7 @@ const Header = () => {
         {/* <div className='bg-mine-shaft-900 rounded-full p-1.5'>
           <IconSettings stroke={1.5} />
         </div> */}
-          {user ?<NotificationMenu/>:<></>}
+        {user ? <NotificationMenu /> : <></>}
       </div>
     </div>
   )

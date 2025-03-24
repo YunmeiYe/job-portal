@@ -1,10 +1,8 @@
-import axios from 'axios'
-
-const base_url = "http://localhost:8080/jobs/"
+import axiosInstance from "../Interceptor/AxiosInterceptor";
 
 const postJob = async (job: any) => {
   try {
-    const result = await axios.post(`${base_url}post`, job);
+    const result = await axiosInstance.post(`/jobs/post`, job);
     return result.data;
   } catch (error) {
     throw error;
@@ -13,7 +11,7 @@ const postJob = async (job: any) => {
 
 const getAllJobs = async () => {
   try {
-    const result = await axios.get(`${base_url}getAll`);
+    const result = await axiosInstance.get(`/jobs/getAll`);
     return result.data;
   } catch (error) {
     throw error;
@@ -22,7 +20,7 @@ const getAllJobs = async () => {
 
 const getJob = async (id: any) => {
   try {
-    const result = await axios.get(`${base_url}get/${id}`);
+    const result = await axiosInstance.get(`/jobs/get/${id}`);
     return result.data;
   } catch (error) {
     throw error;
@@ -31,7 +29,7 @@ const getJob = async (id: any) => {
 
 const applyJob = async (id: any, applicant: any) => {
   try {
-    const result = await axios.post(`${base_url}apply/${id}`, applicant);
+    const result = await axiosInstance.post(`/jobs/apply/${id}`, applicant);
     return result.data;
   } catch (error) {
     throw error;
@@ -40,7 +38,7 @@ const applyJob = async (id: any, applicant: any) => {
 
 const getJobPostedBy = async (id: any) => {
   try {
-    const result = await axios.get(`${base_url}postedBy/${id}`);
+    const result = await axiosInstance.get(`/jobs/postedBy/${id}`);
     return result.data;
   } catch (error) {
     throw error;
@@ -49,7 +47,7 @@ const getJobPostedBy = async (id: any) => {
 
 const changeAppStatus = async (application: any) => {
   try {
-    const result = await axios.post(`${base_url}changeAppStatus`, application);
+    const result = await axiosInstance.post(`/jobs/changeAppStatus`, application);
     return result.data;
   } catch (error) {
     throw error;
