@@ -1,10 +1,10 @@
 import { Button } from "@mantine/core"
 import { IconArrowLeft } from "@tabler/icons-react"
 import { Link, useParams } from "react-router-dom"
-import JobDetails from "../JobDetails/JobDetails"
-import RecommendedJobs from "../JobDetails/RecommendedJobs"
+import JobDetails from "../components/JobDetails/JobDetails"
+import RecommendedJobs from "../components/JobDetails/RecommendedJobs"
 import { useEffect, useState } from "react"
-import { getJob } from "../Services/JobService"
+import { getJob } from "../services/jobService"
 
 const JobDetailsPage = () => {
   const { id } = useParams();

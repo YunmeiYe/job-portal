@@ -1,6 +1,6 @@
 import { jwtDecode } from 'jwt-decode';
-import axiosInstance from '../Interceptor/AxiosInterceptor';
-import { navigateToLogin } from './AuthService';
+import axiosInstance from '../api/AxiosInterceptor';
+import { navigateToLogin } from './authService';
 
 let refreshTimeout: ReturnType<typeof setTimeout>;
 

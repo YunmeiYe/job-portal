@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom"
-import PostedJobDetails from "../PostedJobs/PostedJobDetails"
-import PostedJob from "../PostedJobs/PostedJobs"
+import PostedJobDetails from "../components/PostedJobs/PostedJobDetails"
+import PostedJob from "../components/PostedJobs/PostedJobs"
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getJobPostedBy } from "../Services/JobService";
+import { getJobPostedBy } from "../services/jobService";
 
 const PostedJobsPage = () => {
   const { id } = useParams();

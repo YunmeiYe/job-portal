@@ -1,9 +1,9 @@
-import Companies from '../LandingPage/Companies'
-import DreamJob from '../LandingPage/DreamJob'
-import JobCategory from '../LandingPage/JobCategory'
-import Subscribe from '../LandingPage/Subscribe'
-import Testimonials from '../LandingPage/Testimonials'
-import Working from '../LandingPage/Working'
+import Companies from '../components/LandingPage/Companies'
+import DreamJob from '../components/LandingPage/DreamJob'
+import JobCategory from '../components/LandingPage/JobCategory'
+import Subscribe from '../components/LandingPage/Subscribe'
+import Testimonials from '../components/LandingPage/Testimonials'
+import Working from '../components/LandingPage/Working'
 
 const HomePage = () => {
   return (

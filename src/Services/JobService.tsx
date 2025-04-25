@@ -1,4 +1,4 @@
-import axiosInstance from "../Interceptor/AxiosInterceptor";
+import axiosInstance from "../api/AxiosInterceptor";
 
 const postJob = async (job: any) => {
   try {

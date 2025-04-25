@@ -1,6 +1,6 @@
-import axiosInstance from '../Interceptor/AxiosInterceptor';
+import axiosInstance from '../api/AxiosInterceptor';
 
-const getNotifications = async (id:any) => {
+const getNotifications = async (id: any) => {
   try {
     const result = await axiosInstance.get(`notifications/get/${id}`);
     return result.data;
@@ -9,7 +9,7 @@ const getNotifications = async (id:any) => {
   }
 }
 
-const readNotification = async (id:any) => {
+const readNotification = async (id: any) => {
   try {
     const result = await axiosInstance.put(`/notifications/read/${id}`);
     return result.data;

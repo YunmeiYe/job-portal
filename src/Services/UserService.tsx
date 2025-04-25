@@ -1,4 +1,4 @@
-import axiosInstance from "../Interceptor/AxiosInterceptor";
+import axiosInstance from "../api/AxiosInterceptor";
 
 const login = async (login: any) => {
   const result = await axiosInstance.post(`/api/auth/login`, login);

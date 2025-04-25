@@ -1,7 +1,7 @@
 import { IconArrowLeft, IconBowFilled } from '@tabler/icons-react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import SignUp from '../SignUpLogin/SignUp'
-import Login from '../SignUpLogin/Login'
+import SignUp from '../components/SignUpLogin/SignUp'
+import Login from '../components/SignUpLogin/Login'
 import { Button } from '@mantine/core'
 
 const SignUpPage = () => {
