@@ -52,7 +52,6 @@ const SignUp = () => {
     if (valid) {
       setLoading(true);
       registerUser(data).then(res => {
-        console.log(res);
         setData(form);
         successNotification('Registered Successfully', 'Redirecting to login page...')
         setTimeout(() => {

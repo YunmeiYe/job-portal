@@ -2,11 +2,12 @@ import axios, { InternalAxiosRequestConfig } from "axios";
 
 const axiosInstance = axios.create({
   baseURL: "http://localhost:8080",
+  withCredentials: true,
 });
 
 axiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("accessToken");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -17,16 +18,16 @@ axiosInstance.interceptors.request.use(
   }
 );
 
-export const setupResponseInterceptor = (navigate:any) => {
+export const setupResponseInterceptor = (navigate: any) => {
   axiosInstance.interceptors.response.use((response) => {
     return response;
   },
-    (error)=> {
-    if (error.response?.status === 401) {
-      navigate('/login');
-    }
-    return Promise.reject(error);
-  });
+    (error) => {
+      if (error.response?.status === 401) {
+        navigate('/login');
+      }
+      return Promise.reject(error);
+    });
 }
 
 export default axiosInstance;

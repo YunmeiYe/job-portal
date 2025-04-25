@@ -3,7 +3,7 @@ import userReducer from "./Slices/UserSlice"
 import profileReducer from "./Slices/ProfileSlice"
 import filterReducer from "./Slices/FilterSlice"
 import sortReducer from "./Slices/SortSlice"
-import jwtReducer from "./Slices/JWTSlice"
+import authReducer from "./Slices/AuthSlice"
 
 export default configureStore({
   reducer: {
@@ -11,6 +11,6 @@ export default configureStore({
     profile: profileReducer,
     filter: filterReducer,
     sort: sortReducer,
-    jwt: jwtReducer
+    auth: authReducer
   }
 })

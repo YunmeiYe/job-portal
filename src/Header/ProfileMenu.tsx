@@ -13,7 +13,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { removeUser } from '../Slices/UserSlice';
 import { successNotification } from '../Services/Notification';
-import { removeJwt } from '../Slices/JWTSlice';
+import { removeAuthToken } from '../Slices/AuthSlice';
+import { clearTokenRefreshTimer } from '../Services/TokenService';
 
 const ProfileMenu = () => {
   const dispatch = useDispatch();
@@ -26,10 +27,11 @@ const ProfileMenu = () => {
   const handleLogout = () => {
     successNotification('You have been logged out', 'Redirecting to home page ...');
     setTimeout(() => {
+      clearTokenRefreshTimer();
+      dispatch(removeAuthToken());
       dispatch(removeUser());
-      dispatch(removeJwt());
       navigate("/");
-    }, 4000)
+    }, 2000)
   }
 
   return (

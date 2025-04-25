@@ -14,7 +14,7 @@ import { setupResponseInterceptor } from '../Interceptor/AxiosInterceptor';
 
 const Header = () => {
   const user = useSelector((state: any) => state.user);
-  const token = useSelector((state: any) => state.jwt);
+  const auth = useSelector((state: any) => state.auth);
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,9 +24,9 @@ const Header = () => {
   }, [navigate])
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token == "") {
-      const decoded = jwtDecode(localStorage.getItem('token') || "");
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken == "") {
+      const decoded = jwtDecode(localStorage.getItem('accessToken') || "");
       dispatch(setUser({ ...decoded, email: decoded.sub }));
     }
     if (user) {
@@ -34,7 +34,7 @@ const Header = () => {
         dispatch(setProfile(data));
       }).catch((error: any) => console.log(error));
     }
-  }, [token, navigate])
+  }, [auth, navigate])
 
   return (
     location.pathname != "/sign-up" && location.pathname != "/login" &&

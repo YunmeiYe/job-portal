@@ -3,14 +3,17 @@ import { IconAt, IconLock } from "@tabler/icons-react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { loginUser } from "../Services/AuthService"
+
 import { loginValidation } from "../Services/FormValidation"
 import { useDisclosure } from "@mantine/hooks"
 import ResetPassword from "./ResetPassword"
 import { useDispatch } from "react-redux"
 import { setUser } from "../Slices/UserSlice"
 import { errorNotification, successNotification } from "../Services/Notification"
-import { setJwt } from "../Slices/JWTSlice"
+import { authTokenChange } from "../Slices/AuthSlice"
 import { jwtDecode } from "jwt-decode"
+import { login } from "../Services/UserService"
+import { scheduleTokenRefresh } from "../Services/TokenService"
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -37,17 +40,22 @@ const Login = () => {
 
     if (valid) {
       setLoading(true);
-      loginUser(data).then((res:any) => {
+      login(data).then((res: any) => {
         setData(form);
+        const decoded = jwtDecode(res.accessToken);
+        let expiresIn = 0;
+        if(decoded.exp && decoded.iat) {
+          expiresIn = (decoded.exp - decoded.iat) * 1000;
+        }
+        dispatch(authTokenChange({ accessToken: res.accessToken, expiresIn: expiresIn }));
+        scheduleTokenRefresh(navigate);
+        dispatch(setUser({ ...decoded, email: decoded.sub }));
         successNotification("Login Successfully", 'Redirecting to home page ...');
-        dispatch(setJwt(res.jwt));
-        const decoded = jwtDecode(res.jwt);
-        dispatch(setUser({...decoded, email:decoded.sub}));
         setTimeout(() => {
           setLoading(false);
           navigate("/");
-        }, 4000)
-      }).catch((err:any) => {
+        }, 3000)
+      }).catch((err: any) => {
         setLoading(false);
         console.log(err);
         errorNotification("Login Failed", err.response.data.errorMessage);
