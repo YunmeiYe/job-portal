@@ -3,11 +3,12 @@ import { IconCheck, IconPencil, IconX } from '@tabler/icons-react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { successNotification } from '../../services/notification'
-import { changeProfile } from '../../store/profileSlice'
+import { updateProfile } from '../../services/profileService'
+import { ThunkDispatch } from '@reduxjs/toolkit'
 
 const About = () => {
   const [edit, setEdit] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const profile = useSelector((state: any) => state.profile);
   const [about, setAbout] = useState("")
 
@@ -23,7 +24,7 @@ const About = () => {
   const handleSave = () => {
     setEdit(false);
     let updatedProfile = { ...profile, about: about };
-    dispatch(changeProfile(updatedProfile));
+    dispatch(updateProfile(updatedProfile));
     successNotification("Success", "About updated successfully");
   }
 

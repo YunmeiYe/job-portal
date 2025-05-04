@@ -5,12 +5,13 @@ import { IconPencil, IconBriefcase, IconMapPin, IconCheck, IconX } from "@tabler
 import { useForm } from '@mantine/form';
 import SelectInput from "./SelectInput";
 import { useDispatch, useSelector } from "react-redux";
-import { changeProfile } from "../../store/profileSlice";
 import { successNotification } from "../../services/notification";
+import { ThunkDispatch } from "@reduxjs/toolkit";
+import { updateProfile } from "../../services/profileService";
 const Info = () => {
   const select = fields;
   const [edit, setEdit] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const profile = useSelector((state: any) => state.profile);
   const { user } = useSelector((state: any) => state.auth);
 
@@ -31,7 +32,7 @@ const Info = () => {
   const handleSave = () => {
     setEdit(false);
     let updatedProfile = { ...profile, ...form.getValues() };
-    dispatch(changeProfile(updatedProfile));
+    dispatch(updateProfile(updatedProfile));
     successNotification("Success", "Profile updated successfully");
   }
 

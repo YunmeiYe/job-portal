@@ -3,19 +3,20 @@ import { useState } from "react"
 import ExpInput from "./ExpInput";
 import { formatDate } from "../../utils/common";
 import { useDispatch, useSelector } from "react-redux";
-import { changeProfile } from "../../store/profileSlice";
 import { successNotification } from "../../services/notification";
+import { updateProfile } from "../../services/profileService";
+import { ThunkDispatch } from "@reduxjs/toolkit";
 
 const ExpCard = (props: any) => {
   const [edit, setEdit] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const profile = useSelector((state: any) => state.profile);
 
   const handleDelete = () => {
     let exp = [...profile.experiences];
     exp.splice(props.index, 1);
     let updatedProfile = { ...profile, experiences: exp };
-    dispatch(changeProfile(updatedProfile));
+    dispatch(updateProfile(updatedProfile));
     successNotification("Success", "Experience deleted successfully");
   }
 

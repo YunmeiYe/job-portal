@@ -2,12 +2,13 @@ import { IconBookmark, IconBookmarkFilled, IconBriefcase, IconCalendarMonth, Ico
 import { Button, Divider, Text } from '@mantine/core'
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
-import { changeProfile } from "../../store/profileSlice";
 import { timeAgo } from "../../utils/common";
+import { updateProfile } from "../../services/profileService";
+import { ThunkDispatch } from "@reduxjs/toolkit";
 
 const Card = (props: any) => {
   const profile = useSelector((state: any) => state.profile);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
   const handleSaveJob = () => {
     let savedJobs = [...profile.savedJobs];
@@ -17,7 +18,7 @@ const Card = (props: any) => {
       savedJobs.push(props.id);
     }
     let updatedProfile = { ...profile, savedJobs };
-    dispatch(changeProfile(updatedProfile));
+    dispatch(updateProfile(updatedProfile));
   }
 
   return (

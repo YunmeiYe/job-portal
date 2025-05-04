@@ -5,16 +5,18 @@ const ProfileSlice = createSlice({
   name: "profile",
   initialState: {},
   reducers: {
-    changeProfile: (state, action) => {
-      state = updateProfile(action.payload);
-      return action.payload;
-    },
     setProfile: (state, action) => {
       state = action.payload;
       return state;
     }
   },
+  extraReducers: (builder) => {
+    builder.addCase(updateProfile.fulfilled, (state, action) => {
+      state = action.payload;
+      return state;
+    });
+  }
 })
 
-export const { changeProfile, setProfile } = ProfileSlice.actions;
+export const { setProfile } = ProfileSlice.actions;
 export default ProfileSlice.reducer;

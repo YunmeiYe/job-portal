@@ -2,12 +2,13 @@ import { ActionIcon, TagsInput } from '@mantine/core'
 import { IconCheck, IconPencil, IconX } from '@tabler/icons-react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeProfile } from '../../store/profileSlice'
 import { successNotification } from '../../services/notification'
+import { ThunkDispatch } from '@reduxjs/toolkit'
+import { updateProfile } from '../../services/profileService'
 
 const Skills = () => {
   const [edit, setEdit] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const profile = useSelector((state: any) => state.profile);
   const [skills, setSkills] = useState<string[]>([]);
 
@@ -23,7 +24,7 @@ const Skills = () => {
   const handleSave = () => {
     setEdit(false);
     let updatedProfile = { ...profile, skills: skills };
-    dispatch(changeProfile(updatedProfile));
+    dispatch(updateProfile(updatedProfile));
     successNotification("Success", "Skills updated successfully");
   }
   return (

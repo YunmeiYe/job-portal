@@ -2,18 +2,19 @@ import { ActionIcon } from "@mantine/core"
 import { IconTrash } from "@tabler/icons-react"
 import { formatDate } from "../../utils/common"
 import { successNotification } from "../../services/notification"
-import { changeProfile } from "../../store/profileSlice"
 import { useDispatch, useSelector } from "react-redux"
+import { updateProfile } from "../../services/profileService"
+import { ThunkDispatch } from "@reduxjs/toolkit"
 
 const CertCard = (props: any) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const profile = useSelector((state: any) => state.profile);
 
   const handleDelete = () => {
     let certs = [...profile.certifications];
     certs.splice(props.index, 1);
     let updatedProfile = { ...profile, certifications: certs };
-    dispatch(changeProfile(updatedProfile));
+    dispatch(updateProfile(updatedProfile));
     successNotification("Success", "Certificate deleted successfully");
   }
 

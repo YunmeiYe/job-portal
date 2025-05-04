@@ -5,17 +5,18 @@ import { card } from "../../data/JobDescData"
 import DOMPurify from "dompurify"
 import { timeAgo } from "../../utils/common"
 import { useSelector, useDispatch } from "react-redux"
-import { changeProfile } from "../../store/profileSlice"
 import { useEffect, useState } from "react"
 import { postJob } from "../../services/jobService"
 import { errorNotification, successNotification } from "../../services/notification"
+import { updateProfile } from "../../services/profileService"
+import { ThunkDispatch } from "@reduxjs/toolkit"
 
 const JobDetails = (props: any) => {
   const cleanHTML = DOMPurify.sanitize(props.description);
   const [applied, setApplied] = useState(false);
   const profile = useSelector((state: any) => state.profile);
   const { user } = useSelector((state: any) => state.auth);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
   useEffect(() => {
     if (props.applicants?.filter((applicant: any) => applicant.applicantId == user.id).length > 0) {
@@ -33,7 +34,7 @@ const JobDetails = (props: any) => {
       savedJobs.push(props.id);
     }
     let updatedProfile = { ...profile, savedJobs };
-    dispatch(changeProfile(updatedProfile));
+    dispatch(updateProfile(updatedProfile));
   }
 
   const handleClose = () => {

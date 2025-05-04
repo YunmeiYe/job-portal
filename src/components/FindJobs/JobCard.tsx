@@ -3,11 +3,12 @@ import { Button, Divider, Text } from '@mantine/core'
 import { Link } from "react-router-dom"
 import { timeAgo } from "../../utils/common"
 import { useDispatch, useSelector } from "react-redux"
-import { changeProfile } from "../../store/profileSlice"
+import { ThunkDispatch } from "@reduxjs/toolkit"
+import { updateProfile } from "../../services/profileService"
 
 const JobCard = (props: any) => {
   const profile = useSelector((state: any) => state.profile);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
   const handleSaveJob = () => {
     let savedJobs = [...profile.savedJobs];
@@ -17,7 +18,7 @@ const JobCard = (props: any) => {
       savedJobs.push(props.id);
     }
     let updatedProfile = { ...profile, savedJobs };
-    dispatch(changeProfile(updatedProfile));
+    dispatch(updateProfile(updatedProfile));
   }
 
   return (

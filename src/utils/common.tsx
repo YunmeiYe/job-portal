@@ -43,7 +43,7 @@ const timeAgo = (timestamp: string) => {
   } else if (days < 30) {
     return `${days} day${days > 1 ? "s" : ""} ago`;
   } else {
-    return `${months} minute${months > 1 ? "s" : ""} ago`;
+    return `${months} month${months > 1 ? "s" : ""} ago`;
   }
 }
 

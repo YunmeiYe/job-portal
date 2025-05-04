@@ -1,7 +1,6 @@
 import { Avatar, Divider, FileInput, Overlay } from "@mantine/core"
 import { useDispatch, useSelector } from "react-redux"
 import Info from "./Info"
-import { changeProfile } from "../../store/profileSlice"
 import About from "./About"
 import Skills from "./Skills"
 import Experience from "./Experience"
@@ -10,16 +9,18 @@ import { IconEdit } from "@tabler/icons-react"
 import { useHover } from "@mantine/hooks"
 import { successNotification } from "../../services/notification"
 import { getBase64 } from "../../utils/common"
+import { updateProfile } from "../../services/profileService"
+import { ThunkDispatch } from "@reduxjs/toolkit"
 
 const Profile = () => {
   const profile = useSelector((state: any) => state.profile);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const { hovered, ref } = useHover();
 
   const handleFileChange = async (image: any) => {
     let picture: any = await getBase64(image);
     let updatedProfile = { ...profile, picture: picture.split(",")[1] };
-    dispatch(changeProfile(updatedProfile));
+    dispatch(updateProfile(updatedProfile));
     successNotification("Success", "Profile picture updated successfully");
   }
 

@@ -4,12 +4,13 @@ import SelectInput from "./SelectInput";
 import { MonthPickerInput } from "@mantine/dates";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm, isNotEmpty } from "@mantine/form";
-import { changeProfile } from "../../store/profileSlice";
 import { successNotification } from "../../services/notification";
+import { ThunkDispatch } from "@reduxjs/toolkit";
+import { updateProfile } from "../../services/profileService";
 
 const CertInput = (props: any) => {
   const select = fields;
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const profile = useSelector((state: any) => state.profile);
 
   const form = useForm({
@@ -38,7 +39,7 @@ const CertInput = (props: any) => {
     cert[cert.length - 1].issueDate = cert[cert.length - 1].issueDate.toISOString();
     let updatedProfile = { ...profile, certifications: cert };
     props.setEdit(false);
-    dispatch(changeProfile(updatedProfile));
+    dispatch(updateProfile(updatedProfile));
     successNotification("Success", `Certificate added successfully`);
   }
 

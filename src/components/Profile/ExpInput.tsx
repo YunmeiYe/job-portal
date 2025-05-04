@@ -6,11 +6,12 @@ import { MonthPickerInput } from '@mantine/dates';
 import { isNotEmpty, useForm } from '@mantine/form';
 import { useDispatch, useSelector } from 'react-redux';
 import { successNotification } from '../../services/notification';
-import { changeProfile } from '../../store/profileSlice';
+import { ThunkDispatch } from '@reduxjs/toolkit';
+import { updateProfile } from '../../services/profileService';
 
 const ExpInput = (props: any) => {
   const select = fields;
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const profile = useSelector((state: any) => state.profile);
 
   const form = useForm({
@@ -63,7 +64,7 @@ const ExpInput = (props: any) => {
     }
     let updatedProfile = { ...profile, experiences: exp };
     props.setEdit(false);
-    dispatch(changeProfile(updatedProfile));
+    dispatch(updateProfile(updatedProfile));
     successNotification("Success", `Experience ${props.add ? "added" : "updated"} successfully`);
   }
 
