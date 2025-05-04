@@ -1,30 +1,9 @@
-import axiosInstance from '../api/AxiosInterceptor';
+import { agent } from '../api/agent';
 
-const getProfile = async (id: any) => {
-  try {
-    const result = await axiosInstance.get(`/profiles/get/${id}`);
-    return result.data;
-  } catch (error) {
-    throw error;
-  }
-}
+const getProfile = async (id: string | number): Promise<any> => await agent.Profile.getProfile(id);
 
-const getAllProfiles = async () => {
-  try {
-    const result = await axiosInstance.get(`/profiles/getAll`);
-    return result.data;
-  } catch (error) {
-    throw error;
-  }
-}
+const getAllProfiles = async (): Promise<any> => await agent.Profile.getAllProfiles();
 
-const updateProfile = async (profile: any) => {
-  try {
-    const result = await axiosInstance.put(`/profiles/update`, profile);
-    return result.data;
-  } catch (error) {
-    throw error;
-  }
-}
+const updateProfile = async (profile: any): Promise<any> => await agent.Profile.updateProfile(profile);
 
 export { getProfile, getAllProfiles, updateProfile }

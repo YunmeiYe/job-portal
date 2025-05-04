@@ -2,9 +2,10 @@ import { Anchor, Button, Checkbox, Group, LoadingOverlay, PasswordInput, Radio, 
 import { IconAt, IconLock } from "@tabler/icons-react"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
-import { registerUser } from "../../services/userService";
 import { signupValidation } from "../../services/formValidation";
 import { errorNotification, successNotification } from "../../services/notification";
+import { registerUser } from "../../services/authService";
+import { useSelector } from "react-redux";
 
 const form = {
   name: "",
@@ -17,7 +18,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   const [data, setData] = useState(form);
   const [formError, setFormError] = useState<{ [key: string]: string }>(form);
-  const [loading, setLoading] = useState(false);
+  const isLoading = useSelector((state: any) => state.loading.isLoading);
 
   const handleChange = (event: any) => {
     if (typeof (event) == "string") {
@@ -50,18 +51,14 @@ const SignUp = () => {
     setFormError(newFormError);
 
     if (valid) {
-      setLoading(true);
-      registerUser(data).then(res => {
+      registerUser(data).then(() => {
         setData(form);
         successNotification('Registered Successfully', 'Redirecting to login page...')
         setTimeout(() => {
-          setLoading(false);
           navigate("/login");
-        }, 4000)
+        }, 2000)
       }).catch(err => {
-        setLoading(false);
-        console.log(err);
-        errorNotification('Registration Failed', err.response.data.errorMessage)
+        errorNotification('Registration Failed', err.message)
       });
     }
   }
@@ -69,7 +66,7 @@ const SignUp = () => {
   return (
     <>
       <LoadingOverlay
-        visible={loading}
+        visible={isLoading}
         zIndex={1000}
         className="translate-x-1/2"
         overlayProps={{ radius: 'sm', blur: 2 }}
@@ -94,7 +91,7 @@ const SignUp = () => {
           </Group>
         </Radio.Group>
         <Checkbox autoContrast label={<>I accept{' '}<Anchor>terms and conditions</Anchor></>} />
-        <Button onClick={handleSubmit} loading={loading} autoContrast variant="filled">Sign Up</Button>
+        <Button onClick={handleSubmit} loading={isLoading} autoContrast variant="filled">Sign Up</Button>
         <div className="mx-auto">
           Have an account?
           <span className="text-bright-sun-400 hover:underline cursor-pointer" onClick={() => { navigate("/login"); setData(form); setFormError(form) }}> Login</span>

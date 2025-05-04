@@ -19,6 +19,7 @@ const errorNotification = (title: string, message: string) => {
     title: title,
     message: message,
     withCloseButton: true,
+    autoClose: 2000,
     icon: <IconX style={{ width: "90%", height: "90%" }} />,
     color: "red",
     withBorder: true,

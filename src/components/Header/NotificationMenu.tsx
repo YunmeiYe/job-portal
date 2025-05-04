@@ -8,7 +8,7 @@ import { Client } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
 
 const NotificationMenu = () => {
-  const user = useSelector((state: any) => state.user);
+  const { user } = useSelector((state: any) => state.auth);
   const [opened, setOpened] = useState(false);
   const [notifications, setNotifications] = useState<any[]>([]);
   const navigate = useNavigate();

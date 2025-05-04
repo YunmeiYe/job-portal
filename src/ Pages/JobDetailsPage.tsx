@@ -5,6 +5,7 @@ import JobDetails from "../components/JobDetails/JobDetails"
 import RecommendedJobs from "../components/JobDetails/RecommendedJobs"
 import { useEffect, useState } from "react"
 import { getJob } from "../services/jobService"
+import { errorNotification } from "../services/notification"
 
 const JobDetailsPage = () => {
   const { id } = useParams();
@@ -16,7 +17,7 @@ const JobDetailsPage = () => {
       getJob(id).then((res) => {
         setJob(res);
       }).catch((err) => {
-        console.log(err);
+        errorNotification("Error", err.message);
       })
     }
   }, [id])

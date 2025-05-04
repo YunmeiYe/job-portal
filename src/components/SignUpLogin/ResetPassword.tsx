@@ -1,17 +1,18 @@
 import { Button, Modal, PasswordInput, PinInput, TextInput } from '@mantine/core'
 import { IconAt, IconLock } from '@tabler/icons-react'
 import { useState } from 'react'
-import { changePass, sendOtp, verifyOtp } from '../../services/userService';
 import { signupValidation } from '../../services/formValidation';
 import { errorNotification, successNotification } from '../../services/notification';
 import { useInterval } from '@mantine/hooks';
+import { changePassword, sendOtp, verifyOtp } from '../../services/authService';
+import { useSelector } from 'react-redux';
 
 const ResetPassword = (props: any) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passErr, setPassErr] = useState("");
   const [otpSent, setOtpSent] = useState(false);
-  const [otpSending, setOtpSending] = useState(false);
+  const isLoading = useSelector((state: any) => state.loading.isLoading);
   const [verified, setVerified] = useState(false);
   const [resendLoader, setResendLoader] = useState(false);
   const [seconds, setSeconds] = useState(60);
@@ -25,30 +26,23 @@ const ResetPassword = (props: any) => {
   }, 1000);
 
   const handleSendOtp = () => {
-    setOtpSending(true);
-    sendOtp(email).then((res) => {
-      console.log(res);
+    sendOtp(email).then(() => {
       successNotification("OTP Sent Successfully", "Enter OTP to reset.")
       setOtpSent(true);
-      setOtpSending(false);
       setResendLoader(true);
       interval.start();
     }).catch((err) => {
-      console.log(err);
-      setOtpSending(false);
-      errorNotification("OTP Sending Failed", err.response.data.errorMessage);
+      errorNotification("OTP Sending Failed", err.message);
     })
   }
 
   const handleVerifyOtp = (otp: string) => {
-    verifyOtp(email, otp).then((res) => {
-      console.log(res);
+    verifyOtp(email, otp).then(() => {
       successNotification("OTP Verified", "Enter new password.")
       setVerified(true);
     }).catch((err) => {
-      console.log(err);
       setVerified(false);
-      errorNotification("OTP Verification Failed", err.response.data.errorMessage);
+      errorNotification("OTP Verification Failed", err.message);
     })
   }
 
@@ -66,18 +60,16 @@ const ResetPassword = (props: any) => {
   }
 
   const handleResetPassword = () => {
-    changePass(email, password).then((res) => {
-      console.log(res);
-      successNotification("Password Changed Successfully", "Login with new password.")
+    changePassword(email, password).then(() => {
+      successNotification("Password Changed Successfully", "Please login with new password.")
       props.close();
       setOtpSent(false);
       setVerified(false);
       setEmail("");
       setPassword("");
     }).catch((err) => {
-      console.log(err);
       setVerified(false);
-      errorNotification("Password Reset Failed", err.response.data.errorMessage);
+      errorNotification("Password Reset Failed", err.message);
     })
   }
 
@@ -93,12 +85,12 @@ const ResetPassword = (props: any) => {
           placeholder="Your email"
           withAsterisk
           leftSection={<IconAt size={16} />}
-          rightSection={<Button onClick={handleSendOtp} size='xs' className='mr-1' autoContrast loading={otpSending && !otpSent} disabled={email === "" || otpSent} variant="filled">Get OTP</Button>}
+          rightSection={<Button onClick={handleSendOtp} size='xs' className='mr-1' autoContrast loading={isLoading && !otpSent} disabled={email === "" || otpSent} variant="filled">Get OTP</Button>}
           rightSectionWidth={'xl'} />
         {otpSent && <PinInput onComplete={handleVerifyOtp} type="number" length={6} className='mx-auto' size='md' gap='lg' />}
         {otpSent && !verified &&
           <div className='flex gap-2'>
-            <Button onClick={resendOtp} fullWidth autoContrast loading={otpSending} variant="light">{resendLoader ? seconds : "Resend"}</Button>
+            <Button onClick={resendOtp} fullWidth autoContrast loading={isLoading} variant="light" className={`${resendLoader ? "cursor-not-allowed" : "cursor-pointer"}`}>{resendLoader ? seconds : "Resend"}</Button>
             <Button onClick={changeEmail} fullWidth autoContrast variant="filled">Change Email</Button>
           </div>
         }

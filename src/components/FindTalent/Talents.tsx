@@ -5,6 +5,7 @@ import { getAllProfiles } from "../../services/profileService";
 import { useDispatch, useSelector } from "react-redux";
 import { resetFilter } from "../../store/filterSlice";
 import { resetSort } from "../../store/sortSlice";
+import { errorNotification } from "../../services/notification";
 
 const Talents = () => {
   const [talents, setTalents] = useState<any[]>([{}]);
@@ -19,7 +20,7 @@ const Talents = () => {
     dispatch(resetSort());
     getAllProfiles().then((res) => {
       setTalents(res);
-    }).catch((err) => { console.log(err); });
+    }).catch((err) => { errorNotification("Error", err.message); });
   }, []);
 
   useEffect(() => {
@@ -60,7 +61,7 @@ const Talents = () => {
           <Sort sort="talent" />
         </div>
       </div>
-      <div className={`mt-10 flex flex-wrap gap-5 ${filteredTalents.length > 2 ? "justify-between" : ""} `}>
+      <div className={`mt-10 flex flex-wrap gap-5 ${filteredTalents?.length > 2 ? "justify-between" : ""} `}>
         {filteredTalents.length
           ? filteredTalents.map((talent, index) =>
             <TalentCard key={index} {...talent} />)

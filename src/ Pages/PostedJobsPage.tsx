@@ -4,11 +4,12 @@ import PostedJob from "../components/PostedJobs/PostedJobs"
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getJobPostedBy } from "../services/jobService";
+import { errorNotification } from "../services/notification";
 
 const PostedJobsPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const user = useSelector((state: any) => state.user);
+  const { user } = useSelector((state: any) => state.auth);
   const [jobList, setJobList] = useState<any[]>([]);
   const [job, setJob] = useState({});
 
@@ -21,7 +22,7 @@ const PostedJobsPage = () => {
       }
       setJob(res.find((job: any) => job.id == id));
     }).catch((err) => {
-      console.log(err);
+      errorNotification("Error", err.message);
     })
   }, [id]);
 

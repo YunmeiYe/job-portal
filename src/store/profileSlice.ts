@@ -13,7 +13,7 @@ const ProfileSlice = createSlice({
       state = action.payload;
       return state;
     }
-  }
+  },
 })
 
 export const { changeProfile, setProfile } = ProfileSlice.actions;

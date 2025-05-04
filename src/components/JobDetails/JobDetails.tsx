@@ -14,7 +14,7 @@ const JobDetails = (props: any) => {
   const cleanHTML = DOMPurify.sanitize(props.description);
   const [applied, setApplied] = useState(false);
   const profile = useSelector((state: any) => state.profile);
-  const user = useSelector((state: any) => state.user);
+  const { user } = useSelector((state: any) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const JobDetails = (props: any) => {
       successNotification("Success", "Job closed successfully");
       setTimeout(() => { window.location.reload() }, 1000);
     }).catch((err) => {
-      errorNotification("Error", err.response.data.errorMessage);
+      errorNotification("Error", err.message);
     });
   }
 

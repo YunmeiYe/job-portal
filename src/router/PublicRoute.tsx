@@ -7,8 +7,8 @@ interface PublicdRouteProps {
 }
 
 const PublicRoute: React.FC<PublicdRouteProps> = ({ children }: PublicdRouteProps) => {
-  const token = useSelector((state: any) => state.auth.accessToken);
-  if (token) {
+  const { isLoggedIn } = useSelector((state: any) => state.auth);
+  if (isLoggedIn) {
     return <Navigate to="/" />
   }
 

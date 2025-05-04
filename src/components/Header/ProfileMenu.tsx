@@ -10,28 +10,29 @@ import {
 } from '@tabler/icons-react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { removeUser } from '../../store/userSlice';
-import { successNotification } from '../../services/notification';
-import { removeAuthToken } from '../../store/authSlice';
-import { clearTokenRefreshTimer } from '../../services/tokenService';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { errorNotification, successNotification } from '../../services/notification';
+import { logoutUser } from '../../services/authService';
+import { ThunkDispatch } from '@reduxjs/toolkit';
 
 const ProfileMenu = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const navigate = useNavigate();
-  const user = useSelector((state: any) => state.user);
+  const location = useLocation();
+  const { user } = useSelector((state: any) => state.auth);
   const profile = useSelector((state: any) => state.profile);
   const [checked, setChecked] = useState(false);
   const [opened, setOpened] = useState(false);
 
   const handleLogout = () => {
-    successNotification('You have been logged out', 'Redirecting to home page ...');
-    setTimeout(() => {
-      clearTokenRefreshTimer();
-      dispatch(removeAuthToken());
-      dispatch(removeUser());
-      navigate("/");
-    }, 2000)
+    dispatch(logoutUser()).unwrap().then(() => {
+      successNotification('You have been logged out', location.pathname !== '/' ? 'Redirecting to home page ...' : '');
+      setTimeout(() => {
+        navigate("/");
+      }, 2000)
+    }).catch((err) => {
+      errorNotification("Logout Failed", err.message);
+    });
   }
 
   return (

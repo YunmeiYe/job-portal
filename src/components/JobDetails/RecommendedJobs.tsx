@@ -12,7 +12,7 @@ const RecommendedJobs = () => {
     getAllJobs().then((res) => {
       setJobList(res);
     }).catch((err) => {
-      errorNotification("Error", err.response.data.errorMessage)
+      errorNotification("Error", err.message)
     })
   }, [])
 

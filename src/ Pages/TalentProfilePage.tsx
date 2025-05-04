@@ -5,6 +5,7 @@ import TalentProfile from "../components/TalentProfile/TalentProfile"
 import RecommendTalent from "../components/TalentProfile/RecommendedTalent"
 import { useEffect, useState } from "react"
 import { getAllProfiles } from "../services/profileService"
+import { errorNotification } from "../services/notification"
 
 const TalentProfilePage = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const TalentProfilePage = () => {
     window.scrollTo(0, 0);
     getAllProfiles().then((res) => {
       setTalents(res);
-    }).catch((err) => { console.log(err); });
+    }).catch((err) => { errorNotification("Error", err.message); });
   }, []);
 
   return (

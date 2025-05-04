@@ -14,17 +14,17 @@ const PostJob = () => {
   const [editorData, setEditorData] = useState(content)
   const select = fields;
   const navigate = useNavigate();
-  const user = useSelector((state: any) => state.user);
+  const { user } = useSelector((state: any) => state.auth);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     // if (!user) navigate("/login");
-    if (id !== "0") {
+    if (id && id !== "0") {
       getJob(id).then((res) => {
         form.setValues(res);
         setEditorData(res.description);
       }).catch((err) => {
-        console.log(err);
+        errorNotification("Error", err.message);
       });
     } else {
       form.reset();
@@ -63,25 +63,21 @@ const PostJob = () => {
     form.validate();
     if (!form.isValid()) return;
     postJob({ ...form.getValues(), id, postedBy: user.id, jobStatus: "ACTIVE" }).then((res) => {
-      console.log(res);
       successNotification("Success", "Job posted successfully");
       navigate(`/posted-jobs/${res.id}`);
     }).catch((err) => {
-      console.log(err);
-      errorNotification("Error", err.response.data.errorMessage)
+      errorNotification("Error", err.message);
     })
   }
 
   const handleDraft = () => {
     form.validate();
     if (!form.isValid()) return;
-    postJob({ ...form.getValues(), id, postedBy: user.id, jobStatus: "DRAFT" }).then((res) => {
-      console.log(res);
+    postJob({ ...form.getValues(), id, postedBy: user.id, jobStatus: "DRAFT" }).then(() => {
       successNotification("Success", "Job drafted successfully");
       navigate("/posted-jobs/0");
     }).catch((err) => {
-      console.log(err);
-      errorNotification("Error", err.response.data.errorMessage)
+      errorNotification("Error", err.message);
     })
   }
 

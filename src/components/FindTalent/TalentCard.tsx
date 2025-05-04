@@ -23,10 +23,10 @@ const TalentCard = (props: any) => {
       getProfile(props.applicantId).then((res) => {
         setProfile(res);
       }).catch((err) => {
-        console.log(err);
+        errorNotification("Error", err.message);
       })
     } else setProfile(props);
-  }, [props])
+  }, [props.applicantId])
 
   const handleOffer = (status: string) => {
     let interview: any = { id, applicantId: profile?.id, applicationStatus: status };
@@ -42,8 +42,7 @@ const TalentCard = (props: any) => {
       else successNotification("Rejected", "Application has been rejected");
       setTimeout(() => { window.location.reload() }, 1000);
     }).catch((err) => {
-      console.log(err);
-      errorNotification("Error", err.response.data.message);
+      errorNotification("Error", err.message);
     })
   }
 

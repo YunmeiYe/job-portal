@@ -2,6 +2,7 @@ import { jwtDecode } from "jwt-decode";
 import { JSX } from "react";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import { getItem } from "../utils/localStorage";
 
 interface ProtectedRouteProps {
   children: JSX.Element;
@@ -9,14 +10,18 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles }: ProtectedRouteProps) => {
-  const token = useSelector((state: any) => state.auth.accessToken);
-  if (!token) {
+  const { isLoggedIn } = useSelector((state: any) => state.auth);
+  const token = getItem("accessToken");
+  const decoded: any = jwtDecode(token);
+
+  if (!isLoggedIn) {
     return <Navigate to="/login" />
   }
-  const decoded: any = jwtDecode(token);
+
   if (allowedRoles && !allowedRoles.includes(decoded.accountType)) {
     return <Navigate to="/unauthorized" />
   }
+  
   return children;
 }
 

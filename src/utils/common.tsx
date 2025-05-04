@@ -1,3 +1,5 @@
+import { jwtDecode } from "jwt-decode";
+
 const formatDate = (dateString: string) => {
   const date = new Date(dateString);
   const options = {
@@ -54,7 +56,7 @@ const getBase64 = (file: any) => {
   });
 }
 
-const openBase64PDF = (base64String:any) => {
+const openBase64PDF = (base64String: any) => {
   const byteChars = atob(base64String);
   const byteNumbers = new Array(byteChars.length);
   for (let i = 0; i < byteChars.length; i++) {
@@ -65,4 +67,21 @@ const openBase64PDF = (base64String:any) => {
   window.open(blobURL, '_blank');
 }
 
-export { formatDate,formatTime, timeAgo, getBase64, openBase64PDF }
+const getUserFromToken = (token: string) => {
+  const decoded:any = jwtDecode(token);
+  if (decoded && typeof decoded === 'object') {
+    return { ...decoded, email: decoded.sub };
+  }
+  return null;
+}
+
+const getTokenExpiry = (token: string) => {
+  const decoded = jwtDecode(token);
+  if (decoded.exp && decoded.iat) {
+    return (decoded.exp - decoded.iat) * 1000;
+  }
+  return 0;
+}
+
+
+export { formatDate, formatTime, timeAgo, getBase64, openBase64PDF, getUserFromToken, getTokenExpiry };

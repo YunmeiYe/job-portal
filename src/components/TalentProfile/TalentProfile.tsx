@@ -5,16 +5,19 @@ import CertCard from "./CertCard"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { getProfile } from "../../services/profileService"
+import { errorNotification } from "../../services/notification"
 
 const TalentProfile = () => {
   const { id } = useParams();
   const [profile, setProfile] = useState<any>({});
 
   useEffect(() => {
-    getProfile(id).then((res) => {
-      setProfile(res);
-    }).catch((err) => { console.log(err) });
-  })
+    if (id) {
+      getProfile(id).then((res) => {
+        setProfile(res);
+      }).catch((err) => { errorNotification("Error", err.message); });
+    }
+  }, [id]);
 
   return (
     <div className="w-2/3">

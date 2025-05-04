@@ -5,6 +5,7 @@ import { getAllJobs } from "../../services/jobService"
 import { useDispatch, useSelector } from "react-redux"
 import { resetFilter } from "../../store/filterSlice"
 import { resetSort } from "../../store/sortSlice"
+import { errorNotification } from "../../services/notification"
 
 const Jobs = () => {
   const [jobList, setJobList] = useState([{}]);
@@ -20,7 +21,7 @@ const Jobs = () => {
     getAllJobs().then((res) => {
       setJobList(res.filter((job: any) => job.jobStatus == "ACTIVE"));
     }).catch((err) => {
-      console.log(err);
+      errorNotification("Error", err.message);
     })
   }, []);
 

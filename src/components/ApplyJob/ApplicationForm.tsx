@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 const ApplicationForm = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const user = useSelector((state: any) => state.user)
+  const { user } = useSelector((state: any) => state.auth)
   const [preview, setPreview] = useState(false);
   const [submit, setSubmit] = useState(false);
 
@@ -47,15 +47,16 @@ const ApplicationForm = () => {
     setSubmit(true);
     let resume: any = await getBase64(form.getValues().resume);
     let applicant = { ...form.getValues(), applicantId: user.id, resume: resume.split(",")[1] };
-    applyJob(id, applicant).then(() => {
+    applyJob(id!, applicant).then(() => {
       setSubmit(false);
       successNotification("Success", "Application submitted successfully");
       navigate("/job-history");
     }).catch((err) => {
       setSubmit(false);
-      errorNotification("Error", err.response.data.errorMessage);
+      errorNotification("Error", err.message);
     })
   }
+
   return (
     <div>
       <LoadingOverlay

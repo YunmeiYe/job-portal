@@ -1,4 +1,4 @@
-import axiosInstance from '../api/AxiosInterceptor';
+import axiosInstance from '../config/axiosInstance';
 
 const getNotifications = async (id: any) => {
   try {

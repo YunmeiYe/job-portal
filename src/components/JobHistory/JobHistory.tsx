@@ -9,7 +9,7 @@ const JobHistory = () => {
   const [activeTab, setActiveTab] = useState('APPLIED');
   const [jobList, setJobList] = useState([]);
   const [showList, setShowList] = useState([]);
-  const user = useSelector((state: any) => state.user);
+  const { user } = useSelector((state: any) => state.auth);
   const profile = useSelector((state: any) => state.profile);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const JobHistory = () => {
       setJobList(res);
       setShowList(res.filter((job: any) => job.applicants?.filter((applicant: any) => applicant.applicantId == user.id && applicant.applicationStatus == "APPLIED").length > 0));
     }).catch((err) => {
-      errorNotification("Error", err.response.data.errorMessage)
+      errorNotification("Error", err.message);
     })
   }, [])
 

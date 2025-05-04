@@ -12,7 +12,7 @@ const Info = () => {
   const [edit, setEdit] = useState(false);
   const dispatch = useDispatch();
   const profile = useSelector((state: any) => state.profile);
-  const user = useSelector((state: any) => state.user);
+  const { user } = useSelector((state: any) => state.auth);
 
   const form = useForm({
     mode: 'controlled',

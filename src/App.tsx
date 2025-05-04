@@ -6,9 +6,8 @@ import '@mantine/dates/styles.css';
 import '@mantine/notifications/styles.css';
 import { createTheme, MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
-import { Provider } from 'react-redux'
-import store from './store/store';
 import AppRoutes from './router/AppRoutes';
+import SessionWatcher from './components/SessionWatcher';
 
 function App() {
   const theme = createTheme({
@@ -24,12 +23,11 @@ function App() {
     },
   })
   return (
-    <Provider store={store}>
-      <MantineProvider defaultColorScheme='dark' theme={theme}>
-        <Notifications position="top-center" zIndex={1000} />
-        <AppRoutes />
-      </MantineProvider>
-    </Provider>
+    <MantineProvider defaultColorScheme='dark' theme={theme}>
+      <Notifications position="top-right" zIndex={1000} />
+      <SessionWatcher />
+      <AppRoutes />
+    </MantineProvider>
   )
 }
 
