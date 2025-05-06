@@ -19,8 +19,8 @@ const logoutUser = createAsyncThunk(
   'auth/logoutUser',
   async () => {
     const result = await agent.Auth.logoutUser();
-    clearAuthLocalStorage();
     stopTokenRefreshTimer();
+    clearAuthLocalStorage();
     return result;
   });
 

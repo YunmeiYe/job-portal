@@ -28,7 +28,11 @@ const ApplicationForm = () => {
     },
     validate: {
       name: isNotEmpty('Name is required'),
-      email: isNotEmpty('Email is required'),
+      email: (value) => {
+        if (!value) return "Email is required";
+        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) return "Invalid email address";
+        return null;
+      },
       phone: isNotEmpty('Phone is required'),
       website: isNotEmpty('Website is required'),
       resume: isNotEmpty('Resume is required'),

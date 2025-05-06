@@ -25,8 +25,14 @@ const Job = {
   changeAppStatus: (application: any) => http.post("/jobs/changeAppStatus", application),
 }
 
+const Notification = {
+  getNotifications: (id: string | number) => http.get(`notifications/get/${id}`),
+  readNotification: (id: string | number) => http.put(`/notifications/read/${id}`),
+}
+
 export const agent = {
   Auth,
   Profile,
-  Job
+  Job,
+  Notification
 }

@@ -7,6 +7,4 @@ const getAllProfiles = async (): Promise<any> => await agent.Profile.getAllProfi
 
 const updateProfile = createAsyncThunk('profile/updateProfile', async (profile: any): Promise<any> => await agent.Profile.updateProfile(profile))
 
-// const updateProfile = async (profile: any): Promise<any> => await agent.Profile.updateProfile(profile);
-
 export { getProfile, getAllProfiles, updateProfile }
