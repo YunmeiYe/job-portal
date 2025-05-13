@@ -25,10 +25,10 @@ const JobDetailsPage = () => {
 
   return (
     <div className="min-h-[100vh] bg-mine-shaft-950 font-['poppins'] p-4">
-      <Link to={"/find-jobs"} className="my-4 inline-block">
+      <Link to={"/find-jobs"} className="my-4 inline-block w-full">
         <Button onClick={() => navigate(-1)} leftSection={<IconArrowLeft size={20} />} mb={'md'} color="brightSun.4" variant="light">Back</Button>
       </Link>
-      <div className="flex gap-5 justify-around">
+      <div className="flex gap-5 justify-around bs-mx:flex-wrap">
         <JobDetails {...job} />
         <RecommendedJobs />
       </div>

@@ -23,7 +23,7 @@ const TalentProfilePage = () => {
       <Link to={"/find-talent"} className="my-4 inline-block">
         <Button onClick={() => navigate(-1)} leftSection={<IconArrowLeft size={20} />} color="brightSun.4" my={"sm"} variant="light">Back</Button>
       </Link>
-      <div className="flex gap-5">
+      <div className="flex gap-5 lg-mx:flex-wrap">
         <TalentProfile />
         <RecommendTalent talents={talents} />
       </div>

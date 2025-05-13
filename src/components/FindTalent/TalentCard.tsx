@@ -47,7 +47,7 @@ const TalentCard = (props: any) => {
   }
 
   return (
-    <div className="bg-mine-shaft-900 p-4 w-96 flex flex-col gap-3 rounded-xl hover:shadow-[0_0_5px_1px_yellow] !shadow-bright-sun-400">
+    <div className="bg-mine-shaft-900 p-4 w-96 sm-mx:w-full flex flex-col gap-3 rounded-xl hover:shadow-[0_0_5px_1px_yellow] !shadow-bright-sun-400 transition duration-300 ease-in-out">
       <div className="flex justify-between">
         <div className="flex gap-2 items-center">
           <div className="p-2 bg-mine-shaft-800 rounded-full">
@@ -77,7 +77,7 @@ const TalentCard = (props: any) => {
         </div>
       }
       <Divider size="xs" color="mineShaft.7" />
-      <div className='flex [&>*]:w-1/2 [&>*]:p-1'>
+      <div className='flex flex-wrap justify-between xsm:[&>*]:w-1/2 [&>*]:p-1'>
         {
           !props.invited && <>
             <Link to={`/talent-profile/${profile?.id}`}>

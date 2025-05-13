@@ -2,10 +2,12 @@ import { Tabs } from "@mantine/core"
 import PostedJobCard from "./PostedJobCard"
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "@mantine/hooks";
 
 const PostedJobs = (props: any) => {
   const [activeTab, setActiveTab] = useState<string | null>('ACTIVE');
   const navigate = useNavigate();
+  const matches = useMediaQuery('(max-width: 767px)');
 
   useEffect(() => {
     setActiveTab(props.job?.jobStatus || 'ACTIVE');
@@ -21,7 +23,7 @@ const PostedJobs = (props: any) => {
 
   return (
     <div className="w-1/6 mt-5">
-      <div className="text-2xl font-semibold mb-5">Jobs</div>
+      <div className={matches? "hidden":"text-2xl font-semibold mb-5"}>My Jobs</div>
       <div>
         <Tabs value={activeTab} onChange={handleTabChange} autoContrast variant="pills">
           <Tabs.List className="[&_button[aria-selected='false']]:bg-mine-shaft-900 font-medium">

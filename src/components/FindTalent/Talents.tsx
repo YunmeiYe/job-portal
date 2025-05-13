@@ -55,13 +55,13 @@ const Talents = () => {
 
   return (
     <div className="p-5">
-      <div className="flex justify-between">
+      <div className="flex flex-wrap justify-between gap-2">
         <div className="text-2xl font-semibold">Talents</div>
         <div>
           <Sort sort="talent" />
         </div>
       </div>
-      <div className={`mt-10 flex flex-wrap gap-5 ${filteredTalents?.length > 2 ? "justify-between" : ""} `}>
+      <div className={`mt-10 flex flex-wrap gap-5 `}>
         {filteredTalents.length
           ? filteredTalents.map((talent, index) =>
             <TalentCard key={index} {...talent} />)

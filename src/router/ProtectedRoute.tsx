@@ -18,10 +18,10 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles 
     return <Navigate to="/login" />
   }
 
-  if (allowedRoles && !allowedRoles.includes(decoded.accountType)) {
-    return <Navigate to="/unauthorized" />
-  }
-  
+  // if (allowedRoles && !allowedRoles.includes(decoded.accountType)) {
+  //   return <Navigate to="/unauthorized" />
+  // }
+
   return children;
 }
 

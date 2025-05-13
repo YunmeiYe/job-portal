@@ -7,6 +7,7 @@ import { useForm, isNotEmpty } from "@mantine/form";
 import { successNotification } from "../../services/notification";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { updateProfile } from "../../services/profileService";
+import { useMediaQuery } from "@mantine/hooks";
 
 const CertInput = (props: any) => {
   const select = fields;
@@ -46,11 +47,11 @@ const CertInput = (props: any) => {
   return (
     <div className='flex flex-col gap-3'>
       <div className='text-lg font-semibold'> {props.add ? "Add" : "Edit"} Certificate</div>
-      <div className="flex gap-10 [&>*]:w-1/2">
+      <div className="flex gap-10 md-mx:gap-5 [&>*]:w-1/2 xs-mx:flex-wrap xs-mx:[&>*]:w-full">
         <TextInput {...form.getInputProps("name")} withAsterisk label="Title" placeholder="Enter title" />
         <SelectInput form={form} name="issuer" {...select[1]} />
       </div>
-      <div className="flex gap-10 [&>*]:w-1/2">
+      <div className="flex gap-10 md-mx:gap-5 [&>*]:w-1/2 xs-mx:flex-wrap xs-mx:[&>*]:w-full">
         <MonthPickerInput withAsterisk maxDate={new Date()} label="Issue date" placeholder="Pick date" {...form.getInputProps("issueDate")} />
         <TextInput {...form.getInputProps("certificateId")} withAsterisk label="Certificate ID" placeholder="Enter ID" />
       </div>

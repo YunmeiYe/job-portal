@@ -22,7 +22,7 @@ const JobCard = (props: any) => {
   }
 
   return (
-    <div className="bg-mine-shaft-900 p-4 w-72 flex flex-col gap-3 rounded-xl hover:shadow-[0_0_5px_1px_yellow] !shadow-bright-sun-400">
+    <div className="bg-mine-shaft-900 p-4 w-72 sm-mx:w-full flex flex-col gap-3 rounded-xl hover:shadow-[0_0_5px_1px_yellow] !shadow-bright-sun-400">
       <div className="flex justify-between">
         <div className="flex gap-2 items-center">
           <div className="p-2 bg-mine-shaft-800 rounded-md">
@@ -37,11 +37,11 @@ const JobCard = (props: any) => {
           ? <IconBookmarkFilled onClick={handleSaveJob} className="cursor-pointer text-bright-sun-400" />
           : <IconBookmark onClick={handleSaveJob} className="text-mine-shaft-300 cursor-pointer hover:text-bright-sun-400" />}
       </div>
-      <div className="flex gap-2 [&>div]:py-1 [&>div]:px-2 [&>div]:bg-mine-shaft-800 [&>div]:text-bright-sun-400 [&>div]:rounded-lg text-xs">
+      <div className="flex flex-wrap gap-2 [&>div]:py-1 [&>div]:px-2 [&>div]:bg-mine-shaft-800 [&>div]:text-bright-sun-400 [&>div]:rounded-lg text-xs">
         <div className="flex gap-1"><IconBriefcase className="w-4 h-4" />{props.experience}</div>
         <div className="flex gap-1"><IconRecharging className="w-4 h-4" />{props.jobType}</div>
+        <div className="flex gap-1 "><IconMapPin className="w-4 h-4" />{props.location}</div>
       </div>
-      <div className="flex gap-1 px-2 text-xs text-bright-sun-400"><IconMapPin className="w-4 h-4" />{props.location}</div>
       <div className="h-1/4">
         <Text size="xs" className="text-mine-shaft-300" lineClamp={3}>
           {props.description}

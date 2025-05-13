@@ -7,8 +7,8 @@ const Footer = () => {
 
   return (
     location.pathname != "/sign-up" && location.pathname != "/login" &&
-    <div className="pt-20 pb-5 flex gap-5 justify-around bg-mine-shaft-950 font-['poppins']">
-      <div className="w-1/4 flex flex-col gap-4">
+    <div className="pt-20 pb-5 p-4 flex flex-wrap gap-5 sm:justify-around bg-mine-shaft-950 font-['poppins']">
+      <div className="w-1/4 sm-mx:w-1/3 xs-mx:w-full flex flex-col gap-4">
         <div className='flex gap-1 items-center text-bright-sun-400'>
           <IconBowFilled stroke={1.25} className='w-7 h-7' />
           <div className='text-2xl font-semibold'>

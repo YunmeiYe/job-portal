@@ -1,5 +1,5 @@
-import { Button } from '@mantine/core';
-import { IconBowFilled } from '@tabler/icons-react';
+import { Burger, Button, Drawer } from '@mantine/core';
+import { IconBowFilled, IconX, IconXboxX } from '@tabler/icons-react';
 import NavLinks from './NavLinks';
 import { Link, useLocation } from 'react-router-dom';
 import ProfileMenu from './ProfileMenu';
@@ -9,11 +9,21 @@ import { getProfile } from '../../services/profileService';
 import { setProfile } from '../../store/profileSlice';
 import NotificationMenu from './NotificationMenu';
 import { errorNotification } from '../../services/notification';
+import { useDisclosure } from '@mantine/hooks';
+
+const links = [
+  { name: "Find Jobs", url: "/find-jobs" },
+  { name: "Find Talent", url: "/find-talent" },
+  { name: "Post Job", url: "/post-job/0" },
+  { name: "Posted Jobs", url: "/posted-jobs/0" },
+  { name: "Job History", url: "/job-history" },
+]
 
 const Header = () => {
   const { user } = useSelector((state: any) => state.auth);
   const location = useLocation();
   const dispatch = useDispatch();
+  const [opened, { open, close }] = useDisclosure(false);
 
   useEffect(() => {
     if (user?.profileId) {
@@ -31,7 +41,7 @@ const Header = () => {
     <div className="w-full bg-mine-shaft-950 text-white h-28 flex px-6 justify-between items-center font-['poppins']">
       <div className='flex gap-1 items-center text-bright-sun-400'>
         <IconBowFilled stroke={1.25} className='w-8 h-8' />
-        <div className='text-2xl font-semibold'>
+        <div className='xs-mx:hidden text-2xl font-semibold'>
           <Link to={"/"}>JobHook</Link>
         </div>
       </div>
@@ -41,6 +51,7 @@ const Header = () => {
           <>
             <ProfileMenu />
             <NotificationMenu />
+
           </>
         ) : (
           <Link to="/login">
@@ -49,6 +60,17 @@ const Header = () => {
             </Button>
           </Link>
         )}
+        <Burger className='bs:hidden' opened={opened} onClick={open} aria-label="Toggle navigation" />
+
+        <Drawer opened={opened} onClose={close} position='right' size="xs" overlayProps={{ backgroundOpacity: 0.5, blur: 4 }} closeButtonProps={{
+          icon: <IconX size={30} stroke={1.5} />,
+        }} >
+          <div className='flex flex-col gap-6 items-center'>
+            {links.map((link, index) =>
+              <div key={index} className={`h-full flex items-center`}>
+                <Link to={link.url} className='hover:text-bright-sun-400 text-xl'>{link.name}</Link>
+              </div>)}</div>
+        </Drawer>
       </div>
     </div>
   )

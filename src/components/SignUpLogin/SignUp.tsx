@@ -72,7 +72,7 @@ const SignUp = () => {
         overlayProps={{ radius: 'sm', blur: 2 }}
         loaderProps={{ color: 'brightSun.4', type: 'bars' }}
       />
-      <div className='w-1/2 px-20 flex flex-col justify-center gap-3'>
+      <div className='w-1/2 sm-mx:w-full px-20 md-mx:px-10 sm-mx:px-5 flex flex-col justify-center gap-3'>
         <div className='text-2xl font-semibold'>Create Account</div>
         <TextInput value={data.name} error={formError.name} onChange={handleChange} name="name" label="Full Name" placeholder="Your name" withAsterisk />
         <TextInput value={data.email} error={formError.email} onChange={handleChange} name="email" leftSection={<IconAt size={16} />} label="Email" placeholder="Your email" withAsterisk />
@@ -86,15 +86,15 @@ const SignUp = () => {
           withAsterisk
         >
           <Group mt={"xs"}>
-            <Radio className="py-4 px-6 hover:bg-mine-shaft-900 has-[:checked]:bg-bright-sun-400/5 border border-mine-shaft-800 has-[:checked]:border-bright-sun-400 rounded-lg" value="APPLICANT" label="Applicant" iconColor="dark.8" />
-            <Radio className="py-4 px-6 hover:bg-mine-shaft-900 has-[:checked]:bg-bright-sun-400/5 border border-mine-shaft-800 has-[:checked]:border-bright-sun-400 rounded-lg" value="EMPLOYER" label="Employer" iconColor="dark.8" />
+            <Radio className="py-4 px-6 sm-mx:py-2 sm-mx:px-4 hover:bg-mine-shaft-900 has-[:checked]:bg-bright-sun-400/5 border border-mine-shaft-800 has-[:checked]:border-bright-sun-400 rounded-lg" value="APPLICANT" label="Applicant" iconColor="dark.8" />
+            <Radio className="py-4 px-6 sm-mx:py-2 sm-mx:px-4 hover:bg-mine-shaft-900 has-[:checked]:bg-bright-sun-400/5 border border-mine-shaft-800 has-[:checked]:border-bright-sun-400 rounded-lg" value="EMPLOYER" label="Employer" iconColor="dark.8" />
           </Group>
         </Radio.Group>
         <Checkbox autoContrast label={<>I accept{' '}<Anchor>terms and conditions</Anchor></>} />
         <Button onClick={handleSubmit} loading={isLoading} autoContrast variant="filled">Sign Up</Button>
-        <div className="mx-auto">
+        <div className="mx-auto sm-mx:text-sm">
           Have an account?
-          <span className="text-bright-sun-400 hover:underline cursor-pointer" onClick={() => { navigate("/login"); setData(form); setFormError(form) }}> Login</span>
+          <span className="text-bright-sun-400 hover:underline cursor-pointer sm-mx:text-sm" onClick={() => { navigate("/login"); setData(form); setFormError(form) }}> Login</span>
         </div>
       </div>
     </>

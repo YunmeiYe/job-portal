@@ -1,4 +1,4 @@
-import { Badge, Tabs } from '@mantine/core'
+ import { Badge, Tabs } from '@mantine/core'
 import JobDetails from '../JobDetails/JobDetails'
 import TalentCard from '../FindTalent/TalentCard'
 import { useEffect, useState } from 'react'
@@ -25,18 +25,18 @@ const PostedJobDetails = (props: any) => {
   }, [props]);
 
   return (
-    <div className='mt-5 w-3/4 px-5 '>
+    <div className='mt-5 w-3/4 md-mx:w-full px-5 md-mx:p-0'>
       {props.jobTitle
         ? <>
-          <div className="text-2xl font-semibold flex items-center">
+          <div className="text-2xl xs-mx:text-xl font-semibold flex items-center">
             {props.jobTitle}
             <Badge ml="sm" size='sm' variant="light" color='brightSun.4'>
               {props.jobStatus}
             </Badge></div>
-          <div className='font-medium text-mine-shaft-300 mb-5 '>{props.location}</div>
+          <div className='font-medium xsm-mx:text-sm text-mine-shaft-300 mb-5 '>{props.location}</div>
           <div>
             <Tabs variant="outline" radius="lg" value={activeTab} onChange={handleTabChange}>
-              <Tabs.List className="[&_button]:!text-lg font-semibold mb-5  [&_button[data-active='true']]:text-bright-sun-400">
+            <Tabs.List className="[&_button]:!text-xl sm-mx:[&_button]:!text-lg xs-mx:[&_button]:!text-base xsm-mx:[&_button]:!text-sm sm-mx:!text-lg font-semibold xs-mx:font-medium xs-mx:[&_button]:!p-1.5 mb-5 [&_button[data-active='true']]:text-bright-sun-400">
                 <Tabs.Tab value="overview">Overview</Tabs.Tab>
                 <Tabs.Tab value="applicants">Applicants</Tabs.Tab>
                 <Tabs.Tab value="invited">Invited</Tabs.Tab>
