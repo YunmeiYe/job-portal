@@ -86,15 +86,15 @@ const SignUp = () => {
           withAsterisk
         >
           <Group mt={"xs"}>
-            <Radio className="py-4 px-6 sm-mx:py-2 sm-mx:px-4 hover:bg-mine-shaft-900 has-[:checked]:bg-bright-sun-400/5 border border-mine-shaft-800 has-[:checked]:border-bright-sun-400 rounded-lg" value="APPLICANT" label="Applicant" iconColor="dark.8" />
-            <Radio className="py-4 px-6 sm-mx:py-2 sm-mx:px-4 hover:bg-mine-shaft-900 has-[:checked]:bg-bright-sun-400/5 border border-mine-shaft-800 has-[:checked]:border-bright-sun-400 rounded-lg" value="EMPLOYER" label="Employer" iconColor="dark.8" />
+            <Radio className="py-4 px-6 sm-mx:py-2 sm-mx:px-4 hover:bg-light-cream-50 dark:hover:bg-mine-shaft-900 has-[:checked]:bg-bright-sun-400/5 border border-light-cream-500 dark:border-mine-shaft-800 has-[:checked]:border-bright-sun-400 rounded-lg" value="APPLICANT" label="Applicant" iconColor="dark.8" />
+            <Radio className="py-4 px-6 sm-mx:py-2 sm-mx:px-4 hover:bg-light-cream-50 dark:hover:bg-mine-shaft-900 has-[:checked]:bg-bright-sun-400/5 border border-light-cream-500 dark:border-mine-shaft-800 has-[:checked]:border-bright-sun-400 rounded-lg" value="EMPLOYER" label="Employer" iconColor="dark.8" />
           </Group>
         </Radio.Group>
         <Checkbox autoContrast label={<>I accept{' '}<Anchor>terms and conditions</Anchor></>} />
         <Button onClick={handleSubmit} loading={isLoading} autoContrast variant="filled">Sign Up</Button>
         <div className="mx-auto sm-mx:text-sm">
           Have an account?
-          <span className="text-bright-sun-400 hover:underline cursor-pointer sm-mx:text-sm" onClick={() => { navigate("/login"); setData(form); setFormError(form) }}> Login</span>
+          <span className="text-bright-sun-500 dark:text-bright-sun-400 hover:underline cursor-pointer sm-mx:text-sm" onClick={() => { navigate("/login"); setData(form); setFormError(form) }}> Login</span>
         </div>
       </div>
     </>

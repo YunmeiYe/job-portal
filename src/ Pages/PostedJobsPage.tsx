@@ -31,10 +31,10 @@ const PostedJobsPage = () => {
   }, [id]);
 
   return (
-    <div className="min-h-[100vh] bg-mine-shaft-950 font-['poppins'] px-5">
+    <div className="min-h-[100vh] px-5">
       {matches && <Button my="xs" size="sm" autoContrast onClick={open}>All Jobs</Button>}
       <Drawer opened={opened} onClose={close} title="All Jobs" size={230}>
-        <PostedJobs job={job} jobList={jobList} onClose={close}/>
+        <PostedJobs job={job} jobList={jobList} onClose={close} />
       </Drawer>
       <div className="flex justify-between gap-5">
         {!matches && <PostedJobs job={job} jobList={jobList} />}

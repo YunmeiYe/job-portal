@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Checkbox, Combobox, Group, Input, Pill, PillsInput, useCombobox } from '@mantine/core';
+import { Checkbox, Combobox, Group, Input, Pill, PillsInput, useCombobox, useComputedColorScheme } from '@mantine/core';
 import { IconSelector } from '@tabler/icons-react';
 import { useDispatch } from 'react-redux';
 import { updateFilter } from '../../store/filterSlice';
 
 const MultiInput = (props: any) => {
   const dispatch = useDispatch();
+  const computedColorScheme = useComputedColorScheme('dark', { getInitialValueInEffect: true });
 
   useEffect(() => {
     setData(props.options)
@@ -55,14 +56,14 @@ const MultiInput = (props: any) => {
       <Group gap="sm">
         <Checkbox
           size='xs'
-          color='brightSun.4'
+          color={computedColorScheme === "dark" ? "brightSun.4" : "brightSun.5"}
           checked={value.includes(item)}
           onChange={() => { }}
           aria-hidden
           tabIndex={-1}
           style={{ pointerEvents: 'none' }}
         />
-        <span className='text-mine-shaft-300'>{item}</span>
+        <span className='text-mine-shaft-700 dark:text-mine-shaft-300'>{item}</span>
       </Group>
     </Combobox.Option>
   ));
@@ -73,7 +74,7 @@ const MultiInput = (props: any) => {
         <PillsInput
           variant='unstyled'
           leftSection={
-            <div className='text-bright-sun-400 p-1 bg-mine-shaft-900 rounded-full mr-2'>
+            <div className='text-primary p-1 rounded-full mr-2'>
               <props.icon />
             </div>
 
@@ -89,7 +90,7 @@ const MultiInput = (props: any) => {
                 )}
               </>
             ) : (
-              <Input.Placeholder className='!text-mine-shaft-200'>{props.title}</Input.Placeholder>
+              <Input.Placeholder className='!text-mine-shaft-800 dark:!text-mine-shaft-200'>{props.title}</Input.Placeholder>
             )}
           </Pill.Group>
         </PillsInput>

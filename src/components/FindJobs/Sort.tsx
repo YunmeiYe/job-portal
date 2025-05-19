@@ -33,9 +33,9 @@ const Sort = (props: any) => {
       }}
     >
       <Combobox.Target>
-        <div className='border border-bright-sun-400 flex gap-2 p-2 pr-1 xs-mx:p-1 text-sm xs-mx:text-xs rounded-xl items-center cursor-pointer hover:bg-mine-shaft-900' onClick={() => combobox.toggleDropdown()}>
+        <div className='border border-primary flex gap-2 p-2 pr-1 xs-mx:p-1 text-sm xs-mx:text-xs rounded-xl items-center cursor-pointer hover:bg-light-cream-50 dark:hover:bg-mine-shaft-900' onClick={() => combobox.toggleDropdown()}>
           {selectedItem}
-          <IconAdjustments className='w-5 h-5 text-bright-sun-400' />
+          <IconAdjustments className='w-5 h-5 text-primary' />
         </div>
       </Combobox.Target>
 

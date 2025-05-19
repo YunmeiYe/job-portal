@@ -13,3 +13,34 @@
     margin-left: 1em;
   }
 }
+
+@layer utilities {
+  .text-primary {
+    color: var(--mantine-primary-color-filled);
+  }
+  .text-primary * {
+    color: var(--mantine-primary-color-filled);
+  }
+  .text-primary > * {
+    color: var(--mantine-primary-color-filled);
+  }
+  .hover\:text-primary:hover {
+    color: var(--mantine-primary-color-filled);
+  }
+
+  .bg-primary {
+    background-color: var(--mantine-primary-color-filled);
+  }
+
+  .border-primary {
+    border-color: var(--mantine-primary-color-filled);
+  }
+
+  .text-foreground {
+    color: #3d3d3d;
+  }
+  
+  [data-mantine-color-scheme='dark'] .text-foreground {
+    color: #e7e7e7;
+  }
+}

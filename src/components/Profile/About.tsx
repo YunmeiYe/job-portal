@@ -46,7 +46,7 @@ const About = () => {
       </div>
       {edit
         ? <Textarea autosize minRows={3} placeholder="Enter about yourself..." value={about} onChange={(event) => setAbout(event.currentTarget.value)} />
-        : <div className="text-sm  text-mine-shaft-300 text-justify">{profile?.about}</div>}
+        : <div className="text-sm text-mine-shaft-700 dark:text-mine-shaft-300 text-justify">{profile?.about}</div>}
     </div>
   )
 }

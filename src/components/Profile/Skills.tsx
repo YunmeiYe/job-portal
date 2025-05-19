@@ -48,7 +48,7 @@ const Skills = () => {
         <TagsInput placeholder="Enter skill" splitChars={[',', ' ', '|']} value={skills} onChange={setSkills} />
         : <div className="flex flex-wrap gap-2">
           {profile?.skills?.map((skill: any, index: number) =>
-            <div key={index} className="bg-bright-sun-300 bg-opacity-15 rounded-3xl text-sm font-medium text-bright-sun-400 px-3 py-1">
+            <div key={index} className="bg-bright-sun-300 bg-opacity-15 rounded-3xl text-sm font-medium text-primary px-3 py-1">
               {skill}
             </div>
           )}

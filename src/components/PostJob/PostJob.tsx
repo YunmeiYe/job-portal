@@ -1,4 +1,4 @@
-import { Button, NumberInput, TagsInput, Textarea } from "@mantine/core";
+import { NumberInput, TagsInput, Textarea } from "@mantine/core";
 import { content, fields } from "../../data/PostJobData"
 import TextEditor from "./RichTextEditor";
 import { isNotEmpty, useForm } from "@mantine/form";
@@ -8,6 +8,7 @@ import { errorNotification, successNotification } from "../../services/notificat
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import AccentButton from "../AccentButton";
 
 const PostJob = () => {
   const { id } = useParams();
@@ -82,7 +83,7 @@ const PostJob = () => {
   }
 
   return (
-    <div className="w-[90%] mx-auto ">
+    <div className="w-[90%] mx-auto">
       <div className="text-2xl font-semibold mb-5">Post a Job</div>
       <div className="flex flex-col gap-5">
         <div className="flex gap-10 md-mx:gap-5 [&>*]:w-1/2 sm-mx:[&>*]:w-full sm-mx:flex-wrap">
@@ -99,13 +100,13 @@ const PostJob = () => {
         </div>
         <TagsInput {...form.getInputProps("skillsRequired")} withAsterisk label="Skills" placeholder="Enter skill" clearable acceptValueOnBlur splitChars={[',', ' ', '|']} />
         <Textarea withAsterisk label="About Job" autosize minRows={3} placeholder="Enter about job..." {...form.getInputProps("about")} />
-        <div className="[&_button[data-active='true']]:!text-bright-sun-400 [&_button[data-active='true']]:!bg-bright-sun-400/20">
+        <div className="[&_button[data-active='true']]:!text-bright-sun-500 dark:[&_button[data-active='true']]:!text-bright-sun-400 [&_button[data-active='true']]:!bg-bright-sun-400/20">
           <div className="text-sm font-medium">Job Description <span className="text-red-500">*</span></div>
           <TextEditor form={form} data={editorData} />
         </div>
         <div className="flex gap-4">
-          <Button onClick={handlePost} color="brightSun.4" variant="light">Publish Job</Button>
-          <Button onClick={handleDraft} color="brightSun.4" variant="outline">Save as Draft</Button>
+          <AccentButton onClick={handlePost}  variant="filled" autoContrast>Publish Job</AccentButton>
+          <AccentButton onClick={handleDraft} variant="outline">Save as Draft</AccentButton>
         </div>
       </div>
     </div>

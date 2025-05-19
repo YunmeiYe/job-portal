@@ -6,12 +6,16 @@ import Underline from '@tiptap/extension-underline';
 import TextAlign from '@tiptap/extension-text-align';
 import Superscript from '@tiptap/extension-superscript';
 import SubScript from '@tiptap/extension-subscript';
-import { useEffect } from 'react';
+import { useEffect} from 'react';
+import { useComputedColorScheme } from '@mantine/core';
 
 const TextEditor = (props: any) => {
+  const computedColorScheme = useComputedColorScheme('dark', { getInitialValueInEffect: true });
+
   useEffect(() => {
     editor?.commands.setContent(props.data);
-  },[props])
+  }, [props]);
+
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -30,7 +34,7 @@ const TextEditor = (props: any) => {
 
   return (
     <RichTextEditor editor={editor}>
-      <RichTextEditor.Toolbar bg={"mineShaft.10"} sticky stickyOffset={60}>
+      <RichTextEditor.Toolbar bg={computedColorScheme === "dark" ? "mineShaft.10":""} sticky stickyOffset={60}>
         <RichTextEditor.ControlsGroup>
           <RichTextEditor.Bold />
           <RichTextEditor.Italic />
@@ -75,7 +79,7 @@ const TextEditor = (props: any) => {
         </RichTextEditor.ControlsGroup>
       </RichTextEditor.Toolbar>
 
-      <RichTextEditor.Content bg={"mineShaft.10"} />
+      <RichTextEditor.Content bg={computedColorScheme === "dark" ? "mineShaft.10":""} />
     </RichTextEditor>
   );
 }

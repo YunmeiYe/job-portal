@@ -30,6 +30,19 @@ export default {
           900: "#7a330d",
           950: "#461902",
         },
+        "light-cream": {
+          50: "#f9f9f7",
+          100: "#f4f3ef",
+          200: "#efeee8",
+          300: "#eae8e0",
+          400: "#e5e3d9",
+          500: "#ceccc3",
+          600: "#b7b5ad",
+          700: "#a09e97",
+          800: "#72716c",
+          900: "#444441",
+          950: "#2d2d2b",
+        },
       },
       keyframes: {
         "option-animation": {
@@ -61,5 +74,6 @@ export default {
       "xsm-mx": { max: "349px" },
     },
   },
+  darkMode: ["selector", '[data-mantine-color-scheme="dark"]'],
   plugins: [],
 };

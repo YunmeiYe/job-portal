@@ -59,9 +59,9 @@ const Login = () => {
         <Button onClick={handleSubmit} loading={isLoading} autoContrast variant="filled">Login</Button>
         <div className="mx-auto sm-mx:text-sm">
           Don't have an account?
-          <span className="text-bright-sun-400 hover:underline cursor-pointer sm-mx:text-sm" onClick={() => { navigate("/sign-up"); setData(form); setFormError(form) }}> Sign Up</span>
+          <span className="text-primary hover:underline cursor-pointer sm-mx:text-sm" onClick={() => { navigate("/sign-up"); setData(form); setFormError(form) }}> Sign Up</span>
         </div>
-        <div onClick={open} className="text-bright-sun-400 hover:underline cursor-pointer text-center sm-mx:text-sm">Forget Password?</div>
+        <div onClick={open} className="text-primary hover:underline cursor-pointer text-center sm-mx:text-sm">Forget Password?</div>
         <ResetPassword opened={opened} close={close} />
       </div>
     </>

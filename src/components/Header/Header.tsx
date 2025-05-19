@@ -1,15 +1,16 @@
-import { Burger, Button, Drawer } from '@mantine/core';
-import { IconBowFilled, IconX, IconXboxX } from '@tabler/icons-react';
+import { ActionIcon, Burger, Drawer, useMantineColorScheme } from '@mantine/core';
+import { IconBowFilled, IconMoonStars, IconSun, IconX } from '@tabler/icons-react';
 import NavLinks from './NavLinks';
 import { Link, useLocation } from 'react-router-dom';
 import ProfileMenu from './ProfileMenu';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getProfile } from '../../services/profileService';
 import { setProfile } from '../../store/profileSlice';
 import NotificationMenu from './NotificationMenu';
 import { errorNotification } from '../../services/notification';
 import { useDisclosure } from '@mantine/hooks';
+import AccentButton from '../AccentButton';
 
 const links = [
   { name: "Find Jobs", url: "/find-jobs" },
@@ -24,6 +25,8 @@ const Header = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const [opened, { open, close }] = useDisclosure(false);
+  const [checked, setChecked] = useState(false);
+  const { toggleColorScheme } = useMantineColorScheme();
 
   useEffect(() => {
     if (user?.profileId) {
@@ -38,8 +41,8 @@ const Header = () => {
   }
 
   return (
-    <div className="w-full bg-mine-shaft-950 text-white h-28 flex px-6 justify-between items-center font-['poppins']">
-      <div className='flex gap-1 items-center text-bright-sun-400'>
+    <div className="w-full h-28 flex px-6 justify-between items-center font-['poppins']">
+      <div className='flex gap-1 items-center text-primary'>
         <IconBowFilled stroke={1.25} className='w-8 h-8' />
         <div className='xs-mx:hidden text-2xl font-semibold'>
           <Link to={"/"}>JobHook</Link>
@@ -55,11 +58,13 @@ const Header = () => {
           </>
         ) : (
           <Link to="/login">
-            <Button variant="subtle" color="brightSun.4">
+            <AccentButton variant="subtle">
               Login
-            </Button>
+            </AccentButton>
           </Link>
         )}
+        <ActionIcon size="lg" radius="xl" className='hover:!bg-bright-sun-400 dark:hover:!bg-bright-sun-500' autoContrast onClick={() => { toggleColorScheme(); setChecked((prev) => !prev) }}>{checked ? <IconMoonStars /> : <IconSun color='white' />}</ActionIcon>
+
         <Burger className='bs:hidden' opened={opened} onClick={open} aria-label="Toggle navigation" />
 
         <Drawer opened={opened} onClose={close} position='right' size="xs" overlayProps={{ backgroundOpacity: 0.5, blur: 4 }} closeButtonProps={{
@@ -68,7 +73,7 @@ const Header = () => {
           <div className='flex flex-col gap-6 items-center'>
             {links.map((link, index) =>
               <div key={index} className={`h-full flex items-center`}>
-                <Link to={link.url} className='hover:text-bright-sun-400 text-xl'>{link.name}</Link>
+                <Link to={link.url} className='hover:text-primary text-xl'>{link.name}</Link>
               </div>)}</div>
         </Drawer>
       </div>

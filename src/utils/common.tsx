@@ -83,5 +83,4 @@ const getTokenExpiry = (token: string) => {
   return 0;
 }
 
-
 export { formatDate, formatTime, timeAgo, getBase64, openBase64PDF, getUserFromToken, getTokenExpiry };

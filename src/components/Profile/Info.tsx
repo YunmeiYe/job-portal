@@ -65,10 +65,10 @@ const Info = () => {
         <>
           <div className="flex gap-1 text-xl xs-mx:text-base items-center"> <IconBriefcase className="w-5 h-5" stroke={1.5} />{profile.jobTitle} &bull; {profile.company}
           </div>
-          <div className="flex gap-1 text-lg xs-mx:text-base items-center text-mine-shaft-400">
+          <div className="flex gap-1 text-lg xs-mx:text-base items-center text-mine-shaft-600 dark:text-mine-shaft-400">
             <IconMapPin className="w-5 h-5" stroke={1.5} /> {profile.location}
           </div>
-          <div className="flex gap-1 text-lg xs-mx:text-base items-center text-mine-shaft-400">
+          <div className="flex gap-1 text-lg xs-mx:text-base items-center text-mine-shaft-600 dark:text-mine-shaft-400">
             <IconBriefcase className="w-5 h-5" stroke={1.5} /> Experience: {profile.totalExp > 1 ? profile.totalExp + " Years" : 1 + " Year"}
           </div>
         </>

@@ -1,4 +1,4 @@
-import { TextInput, NumberInput, FileInput, Textarea, Button, LoadingOverlay } from '@mantine/core'
+import { TextInput, NumberInput, FileInput, Textarea, LoadingOverlay } from '@mantine/core'
 import { isNotEmpty, useForm } from '@mantine/form';
 import { IconPaperclip } from '@tabler/icons-react'
 import { useState } from 'react'
@@ -7,6 +7,7 @@ import { applyJob } from '../../services/jobService';
 import { useNavigate, useParams } from 'react-router-dom';
 import { errorNotification, successNotification } from '../../services/notification';
 import { useSelector } from 'react-redux';
+import AccentButton from '../AccentButton';
 
 const ApplicationForm = () => {
   const { id } = useParams();
@@ -77,7 +78,7 @@ const ApplicationForm = () => {
             {...form.getInputProps('name')}
             readOnly={preview}
             variant={preview ? "unstyled" : "default"}
-            className={`${preview ? "text-mine-shaft-300 font-semibold" : ""}`}
+            className={`${preview ? "text-mine-shaft-700 dark:text-mine-shaft-300 font-semibold" : ""}`}
             label="Full Name"
             withAsterisk
             placeholder="Enter name"
@@ -86,7 +87,7 @@ const ApplicationForm = () => {
             {...form.getInputProps('email')}
             readOnly={preview}
             variant={preview ? "unstyled" : "default"}
-            className={`${preview ? "text-mine-shaft-300 font-semibold" : ""}`}
+            className={`${preview ? "text-mine-shaft-700 dark:text-mine-shaft-300 font-semibold" : ""}`}
             label="Email"
             withAsterisk
             placeholder="Enter email"
@@ -97,7 +98,7 @@ const ApplicationForm = () => {
             {...form.getInputProps('phone')}
             readOnly={preview}
             variant={preview ? "unstyled" : "default"}
-            className={`${preview ? "text-mine-shaft-300 font-semibold" : ""}`}
+            className={`${preview ? "text-mine-shaft-700 dark:text-mine-shaft-300 font-semibold" : ""}`}
             label="Phone Number"
             withAsterisk
             placeholder="Enter phone number"
@@ -110,7 +111,7 @@ const ApplicationForm = () => {
             {...form.getInputProps('website')}
             readOnly={preview}
             variant={preview ? "unstyled" : "default"}
-            className={`${preview ? "text-mine-shaft-300 font-semibold" : ""}`}
+            className={`${preview ? "text-mine-shaft-700 dark:text-mine-shaft-300 font-semibold" : ""}`}
             label="Personal Website"
             withAsterisk
             placeholder="Enter url"
@@ -121,7 +122,7 @@ const ApplicationForm = () => {
           accept='/application/pdf'
           readOnly={preview}
           variant={preview ? "unstyled" : "default"}
-          className={`${preview ? "text-mine-shaft-300 font-semibold" : ""}`}
+          className={`${preview ? "text-mine-shaft-700 dark:text-mine-shaft-300 font-semibold" : ""}`}
           label="Attach your CV"
           withAsterisk
           leftSection={<IconPaperclip stroke={1.5} />}
@@ -131,7 +132,7 @@ const ApplicationForm = () => {
           {...form.getInputProps('coverLetter')}
           readOnly={preview}
           variant={preview ? "unstyled" : "default"}
-          className={`${preview ? "text-mine-shaft-300 font-semibold" : ""}`}
+          className={`${preview ? "text-mine-shaft-700 dark:text-mine-shaft-300 font-semibold" : ""}`}
           placeholder="Type something about yourself ..."
           label="Cover Letter"
           withAsterisk
@@ -139,12 +140,12 @@ const ApplicationForm = () => {
           minRows={4}
         />
         {!preview &&
-          <Button onClick={handlePreview} color="brightSun.4" variant="light">Preview</Button>
+          <AccentButton onClick={handlePreview} variant="light">Preview</AccentButton>
         }
         {preview &&
           <div className="flex gap-10 [&>*]:w-1/2">
-            <Button fullWidth onClick={handlePreview} color="brightSun.4" variant="outline">Edit</Button>
-            <Button fullWidth onClick={handleSubmit} color="brightSun.4" variant="light">Submit</Button>
+            <AccentButton fullWidth onClick={handlePreview} variant="outline">Edit</AccentButton>
+            <AccentButton fullWidth onClick={handleSubmit} variant="light">Submit</AccentButton>
           </div>
         }
       </div></div>

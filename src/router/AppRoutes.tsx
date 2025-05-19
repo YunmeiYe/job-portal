@@ -21,7 +21,7 @@ const AppRoutes = () => {
 
   return (
     <BrowserRouter>
-      <div className='relative'>
+      <div className='relative bg-light-cream-100 dark:bg-mine-shaft-950 text-foreground min-h-screen'>
         <Header />
         <Divider size="xs" px="md" />
         <Routes>

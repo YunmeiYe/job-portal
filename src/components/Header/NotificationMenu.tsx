@@ -47,7 +47,7 @@ const NotificationMenu = () => {
   return (
     <Menu shadow="md" width={400} opened={opened} onChange={setOpened}>
       <Menu.Target>
-        <div className='bg-mine-shaft-900 rounded-full p-1.5 cursor-pointer'>
+        <div className='bg-light-cream-50 dark:bg-mine-shaft-900 rounded-full p-1.5 cursor-pointer'>
           <Indicator color="brightSun.4" size={8} offset={7} processing disabled={notifications.length <= 0}>
             <IconBell stroke={1.5} />
           </Indicator>
@@ -56,11 +56,11 @@ const NotificationMenu = () => {
       <Menu.Dropdown onChange={() => setOpened(true)}>
         <div className='flex flex-col gap-1'>
           {notifications.map((noti: any, index: number) =>
-            <Notification key={index} className='hover:bg-mine-shaft-900 cursor-pointer' icon={<IconCheck size={20} />} color="teal" title={noti.action} onClose={() => markAsRead(index)} onClick={() => { navigate(noti.route); markAsRead(index); setOpened(false) }}>
+            <Notification key={index} className='hover:bg-light-cream-100 dark:hover:bg-mine-shaft-900 cursor-pointer' icon={<IconCheck size={20} />} color="teal" title={noti.action} onClose={() => markAsRead(index)} onClick={() => { navigate(noti.route); markAsRead(index); setOpened(false) }}>
               {noti.message}
             </Notification>
           )}
-          {notifications.length == 0 && <div className='text-center text-mine-shaft-300'>No Notifications</div>}
+          {notifications.length == 0 && <div className='text-center text-mine-shaft-700 dark:text-mine-shaft-300'>No Notifications</div>}
         </div>
       </Menu.Dropdown>
     </Menu>
